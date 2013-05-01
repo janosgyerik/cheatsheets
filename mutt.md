@@ -21,7 +21,7 @@ Automatically move read mails out of Inbox
 
 * To automatically move read mails to `~/Mail/read_inbox` when exiting mutt, at this to `.muttrc`
 
-    set move=yes
-    set mbox=+read_inbox
+        set move=yes
+        set mbox=+read_inbox
 
 * This works even when new emails are not in a flat file but in a folder like `~/Maildir/new`
