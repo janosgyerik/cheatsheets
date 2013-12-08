@@ -38,11 +38,20 @@ Similar (not necessarily equivalent!) programs in DOS and UNIX.
 |-
 | cd %0\..
 | cd $(dirname "$0")
+|-
+| tasklist
+| ps -xa
+|-
+| taskkill /pid 8168
+| kill 8168
+|-
+| taskkill /pid 8168 /f
+| kill -9 8168
 |}
 
 If you want to use UNIX commands in DOS, get coreutils!
 
-http://sourceforge.net/projects/gnuwin32/files/coreutils/
+[http://sourceforge.net/projects/gnuwin32/files/coreutils/]
 
 == Useful DOS commands ==
 
@@ -77,6 +86,13 @@ http://sourceforge.net/projects/gnuwin32/files/coreutils/
 
 5. Map network drive
  net use Z: \\server\folder
+
+6. Get basename without extension
+ set basename_without_ext=%~n0
+
+7. Absolute path of current script
+ echo %0
+
 
 == Shell script template (sample) ==
 
@@ -179,6 +195,6 @@ This works!
 
 # [[Windows cheat sheet]]
 # [http://www.ss64.com/nt/ An A-Z Index of the Windows XP command line]
-# http://www.vbsedit.com/
-# http://www.emeditor.com/
-# http://sourceforge.net/projects/gnuwin32/files/coreutils/
+# [http://www.vbsedit.com/]
+# [http://www.emeditor.com/]
+# [http://sourceforge.net/projects/gnuwin32/files/coreutils/]
