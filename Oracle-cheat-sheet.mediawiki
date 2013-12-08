@@ -1,0 +1,137 @@
+== How to ... ? ==
+
+;How to limit rows?:
+ select ... where rownum < 20;
+
+;How to show tables with row count?:
+ select table_name, num_rows from user_tables;
+
+... well, this is a lie... I guess the <code>num_rows</code> column is a cached value, not the actual current value. But it's fast, and might still be a good measure of the relative table sizes.
+
+;How to unlock accounts?:
+As the oracle admin user (probably oracle), run <code>sqlplus</code>, connect with <code>/ as sysdba</code>
+
+ alter user scott account unlock;
+ connect scott/tiger
+
+When connecting for the first time, oracle will ask to change the account password. (JDBC, ODP accesses will fail if you don't do this step.)
+
+;How to duplicate a table?:
+ create table dept_bak as select * from dept;
+
+This will not duplicate constraints though.
+
+;How to add unique constraint to a table?:
+ alter table dept_bak add constraint u_dept unique (deptno);
+
+== Starting the database ==
+
+With the <code>oracle</code> user.
+
+# <code>lsnrctl start</code>
+#: If you do this multiple times, not a problem, it just gives you an error.
+# <code>dbstart</code>
+#: If this does not work, you can try this alternative method:
+
+ $ sqlplus                                      
+ 
+ SQL*Plus: Release 10.2.0.1.0 - Production on Sun Nov 27 15:39:27 2005
+ 
+ Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+ 
+ Enter user-name: / as sysdba
+ Connected to an idle instance.
+ 
+ SQL> startup
+ ORACLE instance started.
+ 
+ Total System Global Area  285212672 bytes
+ Fixed Size                  1218968 bytes
+ Variable Size              96470632 bytes
+ Database Buffers          180355072 bytes
+ Redo Buffers                7168000 bytes
+ Database mounted.
+ Database opened.
+ 
+ SQL> exit
+
+* optional: <code>isqlplusctl start</code>
+ netstat -ntl | grep :5560
+ iSQL*Plus: http://localhost:5560/isqlplus
+ (even normal users can login here)
+ iSQL*Plus DBA: http://localhost:5560/isqlplus/dba
+ TODO: how to login here?
+
+* optional: <code>emctl start dbconsole</code>
+ netstat -ntl | grep :1158
+ http://localhost:1158/em
+ any user -> "as normal"
+ sys -> "as sysdba", "as sysoper"
+
+== Stopping the database ==
+
+With the <code>oracle</code> user.
+
+# <code>dbsshut</code>
+#: If this does not work, you can try to shutdown manually:
+
+ $ sqlplus
+ 
+ SQL*Plus: Release 10.2.0.1.0 - Production on Sun Nov 27 15:40:29 2005
+ 
+ Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+ 
+ Enter user-name: / as sysdba
+ 
+ Connected to:
+ Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+ With the Partitioning, OLAP and Data Mining options
+ 
+ SQL> shutdown immediate
+ Database closed.
+ Database dismounted.
+ ORACLE instance shut down.
+ 
+ SQL> exit
+
+* <code>isqlplusctl stop</code>
+* <code>emctl stop dbconsole</code>
+* <code>lsnrctl stop</code>
+
+== Quickies ==
+
+* <code>connect / as sysdba</code>
+* <code>connect sys/password as sysdba</code>
+* How to create new password file:
+** stop database
+** <code>orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=mypasswd</code>
+** start database
+* Alter user:
+ ALTER USER scott ACCOUNT LOCK;     -- lock a user account
+ ALTER USER scott ACCOUNT UNLOCK;   -- unlocks a locked users account
+ ALTER USER scott PASSWORD EXPIRE;  -- Force user to choose a new password
+ 
+ ALTER USER scott IDENTIFIED BY newtiger;
+
+* Create/drop user:
+ CREATE USER scott
+     IDENTIFIED BY tiger  -- Assign password
+     DEFAULT TABLESACE  tools -- Assign space for table and index segments
+     TEMPORARY TABLESPACE temp; -- Assign sort space
+ 
+ DROP USER scott CASCADE;  -- Remove user
+
+* After creating a new user, assign the required privileges:
+ GRANT CONNECT, RESOURCE TO scott;
+ GRANT DBA TO scott;   -- Make user a DB Administrator
+
+* Remember to give the user some space quota on its tablespaces:
+ ALTER USER scott QUOTA UNLIMITED ON tools;
+
+* Accounts locked by default: scott/tiger, hr/hr, oe/oe, sh/sh, system/manager (as sysdba!)
+
+* Logical backup and recovery:
+ exp file=/tmp/exp.dmp log=/tmp/exp.log
+ imp file=/tmp/exp.dmp log=/tmp/imp.log
+
+

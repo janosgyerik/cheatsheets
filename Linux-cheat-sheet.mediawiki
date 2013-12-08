@@ -1,0 +1,11 @@
+=== Adding userX to groupX ===
+
+* Debian: <code>adduser groupX userX</code>
+* RedHat: <code>usermod -a -G groupX userX</code>
+
+=== ntp setup ===
+
+ ntpdate pool.ntp.org
+ chkconfig ntpd on
+ /etc/init.d/ntpd start
+

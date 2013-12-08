@@ -1,0 +1,140 @@
+== Reference ==
+
+See also: http://www.eyecandid.com/bedlam/help/circlemud_help.txt
+
+== Looking around, stats ==
+
+* look, l - see room description, or object description
+** l me, l self - see self, shows worn items
+** l q - look at quest description
+** Items in bags are not visible directly, you have to take them out
+* inventory, i - list of items, and their total weight, and the maximum weight that can be carried
+* stat, score, sc - detailed info about the character, like level, experience, etc
+* pr - changes prompt to health+mana+moves+xp2next: [133hp 100m 86v (122154)]> 
+
+== Items ==
+
+* get
+* drop
+* give something somebody
+* give 2.bronze lavyn
+* give 400 coins aramina
+
+== Bags ==
+
+Small items can be put into bags, for example potions, mushrooms, bread, cup. Flowers are too big already and don't fit.
+
+* put ring bag - put ring into the bag
+* get ring bag - take ring out from the bag
+
+== Wearables ==
+
+* wear
+* wield
+* remove - remove a worn item and put it into inventory
+
+== Eating, drinking ==
+
+* fill canteen fountain
+* alias zzz get bread bag ; eat bread
+* alias zzz buy 5 bread ; put all.bread bag
+
+== Resting ==
+
+* rest, sleep, wake
+
+== Quests ==
+
+* list - get a list of quests, items to buy, etc
+* help quests
+* qinfo [self], qlist, join #, qsay
+* qinfo - list of all the quests
+* qlist - say this to an NPC with "(q)", gives the list of available quests
+* qlist # - ask more info
+* join # - join the quest
+
+== Buying and selling stuff ==
+
+* value item
+* buy #14
+* If multiple objects match the name pattern, the first one will be selected and acted upon, so be careful, and be specific with names.
+
+== Abilities ==
+
+* practice, pra - improve spells and skills in the guild
+
+== Skills ==
+
+* aggressive - get the first chance to hit
+* dodge - automatic, avoid a hit
+* avoid - automatic, avoid a hit and knock opponent down
+* parry - automatic, block an attack
+* riposte - automatic, dodge an attack and hit back
+* bash - knock someone down for 2 rounds
+* kick - knock someone down for 3 rounds
+
+== Grouping with others ==
+
+* Make sure you have the following items before you group with others:
+** Scroll of recall
+** Plenty of water
+** Plenty of food
+** Plenty of red potion (healing)
+** Plenty of moldy green potion (fly)
+** Permanent invisibility
+* Joining a group is as simple as a 'follow' command
+* To stop following, do 'follow me'
+* To automatically assist the leader, do 'autoassist leadername'
+** The leader must do 'say assist' for this to work
+
+== Interesting things to alias ==
+
+* alias cast 'armor' self;cast 'strength' self
+* alias kill backstab $1 ; circle $1 ; circle $1
+* alias bb get bread bag ; eat bread
+* alias refill pour canteen out ; fill canteen fountain
+
+== Tips ==
+
+* Get a pet, for example a wolf is very useful
+** It can help you in fights: <code>order wolf assist</code>
+** It can carry several items
+
+== Important ==
+
+* At level 10, you can specialize at your guild with the "specialize" command
+* At level 10, you can reroll your attributes, as many times as you want, until you accept.
+* At level 16, "tell lauri altar" and other teleporting macros stop working
+* At level 17, red potion stops healing
+* You will be saved from death traps with a combined int+dex >= 31
+
+== Random ==
+
+<pre>
+diagnose
+value
+deposit, withdraw, balance
+Use ! to repeat the last command typed at the keyboard.
+
+Use ^ to replace a string from the last command with a new string. The
+syntax is the same as in csh: "^old-string^replacement. 
+
+donate        # send an item to the donation room
+junk            # destroy an item
+list 2.quest  # show the description of the 2nd quest you are holding
+scan            # quickly scan the area, showing what's nearby
+wimp           # flee from battle
+buy 3 bread
+wimp 10       # will flee if HP goes below 10. Causes loss of XP
+recall 20       # will recall if HP goes below 20. Scroll of recall cannot be in a container.
+
+
+* echo, gecho, send - send message to room, all, someone
+* enter, leave
+* evaluate weapon
+* remember - Once your character has identified an item, he/she can recall its stats anytime
+* title - change the title of your character, as shown in WHO
+
+</pre>
+
+

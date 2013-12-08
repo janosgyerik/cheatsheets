@@ -1,0 +1,27 @@
+ mozilla-xremote-client -a thunderbird|firefox|mozilla|any COMMAND
+ 
+ mozilla -remote "openurl(http://www.mozilla.org/unix/remote.html)"
+ 
+ openURL(), openURL(URL)
+ 
+ openFile(), openFile(URL)
+ 
+ openURL(URL, new-window)
+ 
+ openURL(URL, new-tab)
+ 
+ mailto()
+ 
+ mailto(a, b, c)
+ 
+ xfeDoCommand(openBrowser)
+ 
+ xfeDoCommand(openInbox)
+ 
+ xfeDoCommand(composeMessage)
+ 
+ ping()
+
+Source: http://www.mozilla.org/unix/remote.html
+
+

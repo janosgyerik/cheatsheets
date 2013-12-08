@@ -1,0 +1,6 @@
+;F7:    zenkaku katakana
+;F8:    hankaku katakana
+;F9:    zenkaku kanji romaji
+;F10:    romaji
+
+

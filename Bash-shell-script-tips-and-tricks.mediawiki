@@ -1,0 +1,106 @@
+== Shell variable substrings ==
+
+ ${HOME:2:4}
+ ${HOME:2}
+ ${HOME::4}
+
+== The ${!x} variable hack ==
+
+ for i in ${!P*}; do echo $i = ${!i}; done
+
+== Fork bomb ==
+
+ :(){ :|:& };:
+
+Creates a function called ":". 
+The code in the function recursively calls the function and pipes the output to another invocation of the function. 
+The "&" puts the call into the background -- that way the child process won't die if the parent exits or is killed. 
+Note that by invoking the function twice, you get exponential growth in the number of processes.
+
+== Slice and dice PDF ==
+
+ pdftops file.pdf - | psselect -p11-14 | ps2pdf - file-p11-p14.pdf
+
+* Required packages (ubuntu/debian): <code>poppler-utils, psutils, gs</code>
+
+== Redirect the output of the time builtin ==
+
+ { time command; } > out 2> time+err
+
+You might also want to take a look at the time ''command'' (i.e., instead of the ''builtin'', i.e. <code>which time</code>).
+
+== Redirect the output of multiple commands ==
+
+ { cmd1 ; cmd2 ; } > out 2> err
+
+== Format text with long lines to text with fixed width ==
+
+ fmt -s -w80 file
+
+== Syslog messages fill/bombard/inundate the console ==
+
+Turn it off with:
+
+ dmesg -n1
+
+== Mapping Ctrl-Left and Ctrl-Right for word moving ==
+
+* In many systems/terminals you can skip words on the command line back and forth with Ctrl-Left and Ctrl-Right by default.
+* If not, one way to enable this mapping is in <code>~/.inputrc</code>
+ # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+ "\e[1;5C": forward-word
+ "\e[1;5D": backward-word
+ "\e[5C": forward-word
+ "\e[5D": backward-word
+ "\e\e[C": forward-word
+ "\e\e[D": backward-word
+
+== Other, random ==
+
+* fc - opens last command in $EDITOR
+* disown - bash builtin to disown a process so it won't get a SIGHUP when exiting the shell
+* lsof. Surprised no one has mentioned it before. Shows open file handles, sockets, etc.
+** lsof -n
+** kill -HUP `lsof -t -c sshd`
+* fuser
+* man ascii
+* !:gs/foo/bar
+* sudo !! - repeats last command with sudo prepended
+* fmt - simple optimal text formatter
+* pgrep/pkill - even had an alias to do the same before I knew about it
+* python -m SimpleHTTPServer 8080
+* xxd
+* pstree
+* ddate
+* diff <(sort samples1.txt)  <(sort samples2.txt)
+* :read !<command>
+* pr - allows you to eg combine many single column text data files into one
+* readlink - display value of a symbolic link
+* gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=output.pdf -dBATCH 1.pdf 2.pdf 3.pdf 4.pdf 
+* strace, ltrace
+* !! - substitute prev command to current line
+* Use !* to refer to all arguments in the previous command.
+
+ # todo: read up this, can be really practically useful!
+ bind '"\e[A": history-search-backward'
+ bind '"\e[B": history-search-forward'
+
+== bash hackers ==
+
+* http://www.linkedin.com/share?viewLink=&sid=s724836052&url=http%3A%2F%2Flnkd%2Ein%2FWk8zpY&urlhash=olZL&uid=5546626564143185920&trk=EML_nus_share-* http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
+F21&ut=3DWP-BEKD3oB01
+* http://danielmiessler.com/study/lsof/
+* http://www.reddit.com/user/Theon
+
+
+
+Sure! So, for any basic transfer of a file, you do nc -lp 1234 >foobar on the receiving computer, where 1234 is the port number (you can't bind ports under 1024 as a regular user), and foobar is the name of the file. Now on the computer you want to transfer from, you do nc 192.168.0.1 1234 <foobar where 192.168.0.1 is the ip of the computer you want to transfer to (which you can get with ip addr show), 1234 is the port number, foobar is the name of the file. The problem is that only some nc versions end after the whole file is transferred, so you'll probably have to check the filesize with du. When it stops growing, it probably finished transferring and you can ^C either of the processes, the other one ends as well.
+Music can be streamed the same way, except that on the receiving computer, you pipe the nc into a multimedia player, I've found that mplayer works fairly well. So, for example nc -lp 1234 |mplayer - The - is important, as it tells mplayer to read from the pipe. On the computer that has the file, you do nc 192.168.0.1 1234 <foobar.mp3 again.
+Remote logs are just slightly different, nc -lp 1234 on the receiving end (no pipe, you want to display what you received, not have another program do something with it, or save it to a file) and tail -f logfile |nc 192.168.0.1 1234 on the other end. tail -f continuously prints the file, so when the file updates, you can immediately see it.
+The remote shell was kind of a bastard, I can't remember how I did it in the end but I think I used nc's -e option, which pipes the output into an executable, so you do nc -lp 1234 -e /bin/sh . (Note: this is outright dangerous, as there's no security whatsoever, I used it only tempoarily because I needed to)
+Chatting with friends: Since nc opens a two-way socket, you can send stuff both ways. so, do nc -lp 1234 on the first computer and nc 192.168.0.1 on the second, and now whatever you type into any terminal (the connection doesn't end until you ^C it, kind of like running cat without any arguments) shows up on the other terminal, so it works as a simple two person chatroom.
+And finally, port scanning. nc -z 192.168.0.1 1-1024 (you'll have to use -vz on some versions) shows what ports are open from 1 to 1024 on 192.168.0.1.
+Now keep in mind that every single one of these things is a hack, and every single one has a better alternative, so if you notice you use some of these a lot, look into using dedicated apps for that problem.
+Oh, and nc doesn't encrypt, so if someone were to intercept the transfer along the way, they could read it completely without any problems, so don't transfer anything confidential :)
+
+

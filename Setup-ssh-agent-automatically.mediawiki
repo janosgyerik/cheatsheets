@@ -1,0 +1,42 @@
+== Add this snippet to your .bash_profile ==
+
+<pre>
+# ssh agent setup
+
+SSH_ENV=$HOME/.ssh/env
+
+start_ssh_agent() {
+        ssh-agent > $SSH_ENV
+        . $SSH_ENV
+}
+
+check_ssh_agent() {
+        . $SSH_ENV && test "$SSH_AGENT_PID" && ps -p $SSH_AGENT_PID >/dev/null
+}
+
+check_ssh_identity() {
+        ssh-add -L >/dev/null
+}
+
+add_ssh_identity() {
+        ssh-add
+}
+
+ssh_agent_setup() {
+        check_ssh_agent || start_ssh_agent && check_ssh_identity || add_ssh_identity
+}
+
+ssh_agent_setup
+</pre>
+
+== How it works ==
+
+* When you login, the script will try to connect to a (previously started) ssh-agent process based on settings saved in ~/.ssh/env
+** If it cannot find an ssh-agent process it will start a new one and save the settings in ~/.ssh/env
+* Once the connection with ssh-agent is established, it will check if the agent has any identities stored
+** If not, it will add your default identity (~/.ssh/id_rsa). At this point you will have to enter the passphrase for the identity
+
+As a result, in practice you only have to enter your passphrase once per machine boot. 
+In subsequent bash shells you don't need to enter the passphrase anymore because the ssh-agent already has your identity.
+
+

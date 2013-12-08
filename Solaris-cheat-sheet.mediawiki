@@ -1,0 +1,95 @@
+<b style="color:red">Important:</b> the notes here reflect my best knowledge about Solaris a couple of years back (at the time when Solaris 10 became available for free download). None of the methods here should be considered best practice ''without further validation''.
+
+== Installation ==
+
+* Download from: http://www.sun.com/software/solaris/
+
+* Even with a modest selection of packages to install, Solaris uses almost 10GB disk space. This is good to know in advance for planning your disk/partition needs.
+
+* During the installation, first chance you get record your IP address and create a normal user account! (Without that, I found myself stuck with unusable X configuration and no way to get out.) It's good to have a normal account because root login with ssh is disabled by default.
+
+* When presented with the question of the Desktop Manager, you want the Sun Java Desktop System (= Gnome)
+** To change the Desktop Manager later, you can use <code>kdmconfig</code>. (Choose Xorg.)
+
+== Configuration ==
+
+* The following seemed a nice way of creating a group for users and a user account with admin status:
+ gropadd -g 100 users
+ useradd -g users -G staff -d /export/home/janos -m janos
+
+* The default screen resolution is very small. To make it bigger I created an Xorg configuration file with the <code>/usr/X11/bin/xorgconfig</code>. I used default values for most options. Not too surprisingly Xorg did not work with the resulting configuration file. To make it work I changed the video driver from <code>vga</code> to <code>vesa</code>. For the mouse wheel I added <code>Option "ZAxisMapping" "4 5"</code> to the mouse settings.
+
+* How to set the hostname:
+** After a standard installation my hostname was <code>unknown</code>.
+** When the IP address gets assigned dynamically, I don't believe it's possible to setup the hostname. There appear to be several hosts files, but even if I set the hostname of the loopback interface <code>127.0.0.1</code> to something, since the network interface has no name, my hostname remained unknown.
+** After configuring my DHCP server to assign a hostname, the DHCP client of Solaris updated the following files:
+*** <code>/etc/inet/hosts</code> (symlinked from <code>/etc/hosts</code>)
+*** <code>/etc/hostname.pcn0</code>
+** Without a DHCP server, ''I guess'' these are the files to update by hand.
+*** The DHCP client program appears to be <code>/lib/svc/method/net-physical</code>, and it won't detect the network interface unless the file <code>/etc/hostname.IFNAME</code> exists.
+
+* How to change the default shell:
+** There is no <code>chsh</code>, use <code>usermod</code> instead:<pre>usermod -s /usr/bin/bash janos</pre>
+** There is also no <code>chfn</code>, <code>vipw</code> either.
+
+* How to make caps lock an additional control:
+ xmodmap -e 'clear lock'
+ xmodmap -e 'add Control = Caps_Lock'
+
+== Adding software ==
+
+How to install software in your shiny new Solaris system.
+
+I wish there were easy to use package management tools and public repositories of program packages for Solaris 10. However, a wide range of packages can be installed in either of the following methods:
+
+* Download from http://www.sunfreeware.com/. See detailed notes below.
+* Go to the program's website, they might have binary builds for Solaris 10 (for example Firefox).
+* Compile from source.
+
+=== Sunfreeware.com ===
+
+* Installation steps:
+*# Go to http://www.sunfreeware.com/
+*#* Download: http://www.sunfreeware.com/download.html
+*#* FAQ: http://www.sunfreeware.com/faq.html
+*# Download packages for your version.
+*# gunzip the files.
+*# pkgadd -d the files
+
+* It's important to read the info of each package you install, for example the dependencies are clearly indicated. http://www.sunfreeware.com/programlistintel10.html
+* I downloaded all the available packages to my linux box with:
+ lftp -c 'o ftp.sunfreeware.com/pub/freeware/intel ; mirror 10'
+
+* I could install the following packages with no problem whatsoever:
+** <code>wget-1.9.1</code>
+** <code>vim-6.3</code>, <code>ncurses-5.4</code>, <code>glib-1.2.10</code>, <code>gtk+-1.2.10</code>
+*** Note: the glib and gtk+ versions do matter.
+*** To make it colored, export <code>TERM=xterm-color</code>.
+* <code>sudo-1.6.8p9</code>: instead of the <code>wheel</code> group, I used <code>staff</code> because it already existed and had the same GID as usually <code>wheel</code>. Configured <code>/etc/sudoers</code> accordingly using <code>/usr/local/sbin/visudo</code>.
+* <code>subversion</code>: it had a lot of dependencies, see the website for the list. Also, had to add this to <code>~/.profile</code>:
+ export LD_LIBRARY_PATH=/usr/local/apr/lib
+* <code>coreutils</code>: to have fancy colored ls
+
+== Adding users ==
+
+I thought this would be the right way:
+
+ useradd -m -s /usr/bin/bash janos
+
+But it didn't work somehow. For one thing, root has no write permission to /home by default. Adding it is easy enough, but I didn't want to make changes to defaults. So did this instead:
+
+ useradd -m -s /usr/bin/bash -d /export/home/janos janos
+
+Better yet, create a group for users:
+
+ groupadd -g 100 users
+
+...And create a user as a member of users and with supplementary membership to staff like this:
+
+ useradd -m -s /usr/bin/bash -d /export/home/janos -g users -G staff janos
+
+The shell can be changed later too with:
+
+ usermod -s /usr/bin/bash janos
+
+

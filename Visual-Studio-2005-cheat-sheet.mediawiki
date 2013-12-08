@@ -1,0 +1,40 @@
+== Debugger key bindings ==
+
+ F11    step into
+ S-F11  step out
+
+== Key bindings ==
+
+ F12    go to definition
+ 
+ C-x    delete current line (puts on clipboard)
+ C-S-b  build solution
+ C-F5   run active project
+ 
+ C-tab  switch between window tabs
+ A-f c  close window tab
+ 
+ C-.    opens the smart tag window (convenient for using {} blocks, implement interface, etc)
+ C-k-s  opens the code snippet window (''surround with'' if, for, do, class, etc)
+ C-k-f  format (indent) selected text
+ C-k-d  format (indent) entire document
+ C-k-c  comment selected text block with //
+ C-k-u  uncomment selected text block
+ 
+ C-k-k  toggle bookmark
+ C-k-n  jump to next bookmark
+
+== WANTED! key bindings ==
+
+ ?      jump to next error
+
+== Typed shortcuts, other tips ==
+
+That is, short key sequences that when typed, trigger the insertion of some text block.
+
+* <code>///</code> - Generates a ''summary'' block (documentation).
+* <code>override</code> - Triggers a selector window of base class or interface methods that can be overridden, and upon selection generates a proper function signature with dummy body.
+* <code>}</code> - Formats the block it closes. This is useful. If you need to enclose existing code in a <code>{}</code> block, you don't need to worry about re-indenting, simply type the opening line of the block with the <code>{</code>, and then close the block with <code>}</code> and press enter. The moment you press enter the block will be re-indented properly.
+* To implement interface methods, move the cursor on the interface name and press the context menu key. A menu will pop up that will give the option to implement the interface or to implement it explicitly. This will create regions too.
+
+

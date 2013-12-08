@@ -1,0 +1,22 @@
+== Keyboard shortcuts ==
+
+<pre>
+Ctrl+Shift+N	Open a new window in incognito mode
+Ctrl+O		Open a local file in Google Chrome
+Ctrl+1		Switch to the first tab
+Ctrl+9		Switch to the last tab
+Ctrl-0		Return everything on the page to normal size
+Alt+Home	Open home
+F6		Cycle focus of main web content, address bar, bookmarks bar
+F11		Toggle full-screen mode
+Ctrl+Shift+V	Paste content from the clipboard without formatting
+Alt+click	Download link target
+Shift+scroll	Scroll horizontally
+Ctrl+click	Open link in a new tab in the background
+Ctrl+Shift+click	Open link in a new tab and switch to it
+Shift+click	Open link in a new window
+</pre>
+
+== Extensions ==
+
+

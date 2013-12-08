@@ -1,0 +1,59 @@
+[[Category:Cheat Sheets]]
+
+== Start ==
+
+Press shift+? to pop-up the help menu and enable/disable the keyboard shortcuts.
+
+== Threadlist selection ==
+
+ * then u: select unread conversations
+ shift + i: mark selected conversations read
+ * then n: deselect conversations
+
+== Jumping ==
+
+ g then i: go to inbox
+ g then s: go to starred conversations
+ g then t: go to sent conversations
+ g then d: go to drafts
+ g then a: go to all mail
+ g then c: go to contacts
+ g then k: go to tasks
+ g then l: go to label
+
+== Navigation ==
+
+ u: back to thread list
+ k / j: newer / older conversations
+ p / n: previous / next message
+ o or enter: open conversation; collapse/expand conversation
+ 
+== Application ==
+
+ c: compose
+ /: search mail
+ q: search chat contacts
+ .: open more actions menu
+ v: open move to menu
+ l: open label as menu
+
+== Actions ==
+
+ ,: move focus to toolbar
+ x: select conversation
+ y: remove label
+ e: archive
+ m: ignore conversation
+ !: report as spam
+ #: move to trash
+ r: reply
+ shift+r: reply in a new window
+ a: reply all
+ shift+a: reply all in a new window
+ f: forward
+ z: undo last action
+ + or =: mark as important
+ -: mark as not important
+ shift+t: add conversation to tasks
+
+

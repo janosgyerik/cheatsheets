@@ -1,0 +1,52 @@
+== Where does Log4j find log4j.properties or log4j.xml? ==
+
+Check the output of:
+ System.out.println(Loader.getResource("log4j.properties"));
+ System.out.println(Loader.getResource("log4j.xml"));
+
+For more info, read the manual: http://logging.apache.org/log4j/1.2/manual.html
+
+== Basic log4j.properties example ==
+
+<pre>
+# Set root logger level to DEBUG and its only appender to A1.
+log4j.rootLogger=DEBUG, A1
+
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+# A1 uses PatternLayout.
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%d{ISO8601} - %-5p %c{1} - %m%n
+# 2012-05-18 15:58:39,210 - DEBUG CLASSNAME_WITHOUT_DOMAIN - LOGMESSAGE
+</pre>
+
+== Increase max JVM heap ==
+
+<pre>
+# If your problem is:
+#   java.lang.OutOfMemoryError: Java heap space
+# then:
+#   -Xmx512m
+
+# If your problem is:
+#   java.lang.OutOfMemoryError: PermGen space
+# then:
+#   -XX:MaxPermSize=128m
+
+java -Xms64m -Xmx256m -XX:MaxPermSize=128m HelloWorld
+</pre>
+
+== Memory usage ==
+
+ System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+
+== Get the caller of the current method ==
+
+ Thread.currentThread().getStackTrace()[2]
+
+== Finding where a class was loaded from ==
+
+ URL resource = getClass().getClassLoader().getResource("org/objectweb/asm/ClassWriter.class");
+
+

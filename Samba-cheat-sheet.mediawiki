@@ -1,0 +1,28 @@
+== How to create a read-only shared folder for Windows ==
+
+Add a section like this at the end of <code>/etc/samba/smb.conf</code>:
+
+<pre># A publicly accessible directory for all kinds of exports
+[export]
+        comment = All kinds of exports
+        path = /export
+        read only = yes
+        guest ok = yes
+        guest only = yes
+</pre>
+
+By default other Linux machines will be able to access this share, 
+but to make it accessible from Windows you must tweak the <code>security</code> option in <code>smb.conf</code>:
+ security = share
+
+Make sure Samba service is running and listening on port 139.
+ netstat -ntl | grep 139/
+
+Check on a Windows machine that the Samba share is visible
+ net view \\servername
+ dir \\servername\export
+
+To start Samba automatically at system boot (redhat):
+ chkconfig smb on
+
+

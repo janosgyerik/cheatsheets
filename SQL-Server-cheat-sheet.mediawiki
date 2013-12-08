@@ -1,0 +1,46 @@
+== Run SQL commands using command line ==
+
+* Connect to SQL Server from the command line to get an interactive shell
+
+ sqlcmd -U username -S server\instance
+
+* Run an SQL script
+
+ sqlcmd -U username -S server\instance -e -i script.sql
+
+* Run from python
+
+ os.system('sqlcmd ...')
+
+== ALTER syntax ==
+
+* Change column type
+ ALTER TABLE your_table ALTER COLUMN your_column varchar(20)
+
+* Change column name
+ sp_RENAME 'your_table.old_column', 'new_column', 'COLUMN'
+
+* Change collation of a database
+ ALTER DATABASE dbname COLLATE SQL_Latin1_General_CP1_CI_AS
+
+== Type conversion ==
+
+* Convert datetime date to YYYYMMDD format
+ CONVERT(CHAR(8), GETDATE(), 112)
+
+* Convert YYYYMMDD format into datetime
+ CONVERT(datetime, '20110518')
+ CONVERT(datetime, '20110518 14:19')
+
+* Get yesterday's date
+ DATEADD(DAY, -1, GETDATE()
+
+* Get yesterday's date in YYYYMMDD format
+ CONVERT(CHAR(8), DATEADD(DAY, -1, GETDATE()), 112)
+
+== Misc ==
+
+* Remove null characters from a column
+<pre>UPDATE the_table SET the_column = REPLACE(the_column, CHAR(0), '')</pre>
+
+

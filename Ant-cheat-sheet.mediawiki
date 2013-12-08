@@ -1,0 +1,12 @@
+== Scratch ==
+
+<pre>
+ant -file the-file.xml targetname
+
+	<target name="echoproperties" depends="clear.classes">
+		<echoproperties></echoproperties>
+	</target>
+
+</pre>
+
+

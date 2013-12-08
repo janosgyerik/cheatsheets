@@ -1,0 +1,4 @@
+* Make a PNG 50% transparent
+ convert input.png -channel Alpha -evaluate Divide 2 output.png
+
+

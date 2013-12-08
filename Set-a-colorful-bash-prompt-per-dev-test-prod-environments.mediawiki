@@ -1,0 +1,16 @@
+Add this snippet to your .bash_profile.
+
+Uncomment the line as appropriate per dev/test/prod environments. (I use red for prod, blue for test, green for dev.)
+
+<pre>
+#PS1='\[\e[1;30m\][\u@\h \W]\$\[\e[0m\] ' # black
+#PS1='\[\e[1;31m\][\u@\h \W]\$\[\e[0m\] ' # red
+#PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] ' # green
+#PS1='\[\e[1;33m\][\u@\h \W]\$\[\e[0m\] ' # yellow
+#PS1='\[\e[1;34m\][\u@\h \W]\$\[\e[0m\] ' # blue
+#PS1='\[\e[1;35m\][\u@\h \W]\$\[\e[0m\] ' # purple
+#PS1='\[\e[1;36m\][\u@\h \W]\$\[\e[0m\] ' # cyan
+#PS1='\[\e[1;37m\][\u@\h \W]\$\[\e[0m\] ' # white
+</pre>
+
+

@@ -1,0 +1,45 @@
+== Installing Plone in ubuntu/debian ==
+
+Noramlly this is a simple matter of <code>apt-get install plone-site</code>. However, one time I got a half-broken installation with empty <code>/var/lib/zope*/instance</code> directory. A result of which was failure during Zope startup, due to having no instances. The fix:
+
+ dzhandle -z2.9 make-instance plone-site -m manual
+ dzhandle -z2.9 add-product plone-site CMFPlone
+ /etc/init.d/zope2.9 restart
+
+The above steps generate a brand new Zope instance in <code>/var/lib/zope2.9/instance/plone-site</code>. The configuration file for the instance will be in <code>/etc/zope2.9/plone-site/zope.conf</code>, you might want to change ''HTTPPORT'' from ''9673'' to ''8081'', the ubuntu default.
+
+== Change Plone built-in texts ==
+
+Example: In the registration form for new users, the default message for the password entry is simply "Minimum 5 characters". Let's say we want to change this to "Minimum 5 characters, make sure to choose something others cannot guess and you can remember". 
+
+# Go to the Zope management interface of your plone site. (Either from the ''preferences'' page or change the URL to end with <code>/manage</code>.)
+# Go to <code>portal_skins</code>, then <code>portal_forms</code>, then <code>join_form</code>.
+# Click ''Customize'', this will copy the file to the <code>portal_skins/custom</code> folder. The contents of this file will override the original (preserved at its original location).
+# Change the text.
+
+To make this change to non-English translations, you will need edit the corresponding i18n ''catalog'' files. 
+These are located under the <code>PloneTranslations</code> directory of your Plone installation library (search in your filesystem). For example, if you want to change the Japanese text, the file to edit is <code>plone-ja.po</code>.
+
+== How to backup/migrate a Plone site ==
+
+# Login to the ''Zope management interface (ZMI)'' of the old site.
+# Export the ''Plone Site object'' as a file to download to the local machine.
+#* Select ''Save to file on server''
+#* Do NOT check ''XML format?'' box.
+#: The exported file will be saved in ''[Instance Home]/var/[object id].zexp''. For example in my case: <code>/var/lib/zope2.9/instance/plone-site/var/plone.zexp</code>
+# Copy the export zexp file to the new system's plone instance home into the ''[Instance Home]/import'' directory (in the filesystem).
+# Login to the ''Zope management interface (ZMI)'' of the new site.
+# Import the Plone object from the exported zexp file. I have never seen this step fail, even when there is a big gap between the old and the new versions.
+# Go to ''portal_migration'' object of the Plone Site object and attempt the migration. Depending on the gap between the old version and the new version this step might fail. If the step fails, your best option is to first migrate to a slightly older version of Plone, and then re-migrate. (Once I had to use two intermediary versions.)
+
+== How to add a user to Zope ==
+
+ /var/lib/zope2.9/instance/plone-site/bin/zopectl adduser user password
+
+== Links ==
+
+* [http://plone.org/documentation/how-to/structured-text-cheatsheet Working with Structured Text]
+* [http://plone.org/documentation/how-to/closing-site Close site so people can't add themselves as users]
+* [http://plone.org/documentation/how-to/hide-not-logged-in-and-join-links Hide the Not-Logged-In and Join links]
+
+

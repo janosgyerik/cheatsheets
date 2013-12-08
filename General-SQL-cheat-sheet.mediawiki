@@ -1,0 +1,30 @@
+== The fastest/shortest/easiest way to compare two tables ==
+
+ SELECT TOP 1 1 FROM
+ (
+   SELECT * FROM country
+   UNION ALL
+   SELECT * FROM country_w
+ ) t
+ GROUP BY country_code, country_name
+ HAVING COUNT(*) = 1
+ GO
+
+http://weblogs.sqlteam.com/jeffs/archive/2004/11/10/2737.aspx
+
+== Update a table from another table ==
+
+ UPDATE t1
+     SET t1.col2 = t2.col2,
+         t1.col3 = t2.col3
+ FROM t2
+ WHERE t1.key = t2.key
+
+http://itknowledgeexchange.techtarget.com/itanswers/bulk-update-in-sql-server-2005/
+
+== Working with dates ==
+
+ -- 7 months ago
+ SELECT dateadd(month, -7, getdate())
+
+

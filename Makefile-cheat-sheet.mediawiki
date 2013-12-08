@@ -1,0 +1,4 @@
+;Automatic variables: http://www.gnu.org/software/make/manual/make.html#Automatic-Variables
+;Example Makefile for graphics/ generations: https://code.launchpad.net/bluetoothviewer
+
+

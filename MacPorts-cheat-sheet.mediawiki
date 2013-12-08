@@ -1,0 +1,74 @@
+== Searching, listing, querying ==
+
+<pre>
+# list installed ports
+port installed
+
+# list dependencies of x
+port deps python27
+
+# list dependencies of x recursively
+port rdeps python27
+
+# list ports that depend on x
+port dependents python27
+
+# show the list of files in a port
+port contents python27
+
+# tells important information concerning setup and use of the port,
+# for example that in order to set a python flavor to be default 
+# you have to do this step manually:
+#   sudo port select --set python python27
+port notes python27
+
+# shows available versions and the currently active version of a package
+port select virtualenv
+#port select virtualenv virtualenv27
+</pre>
+
+== Dry run ==
+
+<pre>
+# dry run, works with all commands, shows what would be done
+port -y install python27
+</pre>
+
+== Uninstalling ==
+
+<pre>
+# uninstall package and all other ports that depend on it
+sudo port uninstall --follow-dependents python27
+
+# uninstall all installed versions (active or inactive) of a port
+sudo port uninstall python27 and installed
+
+# uninstall all installed versions of python27, py27-pip and all installed versions of gtk2
+sudo port uninstall python27 and installed py27-pip gtk2 and installed
+
+# uninstall all inactive (~outdated) ports
+sudo port -u uninstall
+</pre>
+
+== Upgrading ==
+
+<pre>
+# update the ports database
+sudo port selfupdate
+
+# upgrade all outdated ports
+# WARNING: this can take a long time, be near power source!
+sudo port upgrade outdated
+</pre>
+
+== Misc ==
+
+<pre>
+# /opt/local/etc/macports/variants.conf
+locate variants.conf
+
+# /opt/local/etc/macports/macports.conf
+locate macports.conf
+</pre>
+
+

@@ -1,0 +1,15 @@
+* <code>yum grouplist > yum.grouplist</code>
+** Example package group: "GNOME Desktop Environment".
+** Since yum is darn slow, I usually save the output of such commands once and just grep in the cache later.
+** <code> yum groupinstall "GNOME Desktop Environment"</code>
+
+* <code>yum list > yum.list</code>
+** Since yum list is very slow, it's faster to do my searches in a file instead.
+
+* <code>yum list installed</code>
+
+<pre>
+yum whatprovides libpng12.so.0
+</pre>
+
+

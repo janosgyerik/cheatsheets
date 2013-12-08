@@ -1,0 +1,13 @@
+== How to ... ==
+
+* Edit links in the sidebar
+** You can do this on the special page called MediaWiki:Sidebar. To get to this page, search your wiki for "sidebar", then in Advanced Search tick the MediaWiki namespace.
+* Hide the table of contents
+** Add the word __NOTOC__ anywhere in the page. [http://www.mediawiki.org/wiki/Manual:FAQ#How_can_I_hide_the_table_of_contents.3F More details in the official documentation]
+
+== Other tips ==
+
+* Text formatting is documented on http://meta.wikimedia.org/wiki/Help:Wikitext
+* In some MediaWiki skins, when you are logged in and want to edit some text, there is no Edit button for the pages themselves, only for page sections. An easy workaround is to go to your preferences and enable page editing by double-click.
+
+

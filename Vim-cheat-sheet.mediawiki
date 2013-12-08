@@ -1,0 +1,221 @@
+<!-- __NOTOC__ -->
+
+This cheat sheat is mostly for vim (and gvim). Most of the tips will work in vi too, but not all of them. This cheat is for advanced users, if you are a beginner I strongly recommend the built-in :help command, it's really great.
+
+== Navigation within :help ==
+
+ C-]		jump to a subject (link)
+ C-t, C-o	jump back
+ :q		exit :help (will not exit vim)
+
+== Moving around == 
+
+Move around within a buffer, by words, by lines, by sentences, by paragraphs, and so on.
+
+ f{char}		to [count]'th occurence of {char} to the right
+ t{char}		till before [count]'th occurence of {char} to the right
+ w, b		move one word forward, backward
+ (, )		move sentences backward, forward
+ {, }		move paragraphs backward, forward
+ H, M, L		go to top, middle, bottom of the screen
+ C-y, C-e	scroll up/down by one line
+ C-u, C-d	scroll up/down by half-page
+
+== Command execution ==
+
+Execute shell commands and insert the output in the current file, or pipe the contents of the buffer to a shell command and replace with the output of the command.
+
+ :read !{cmd} 
+ execute cmd and insert after the cursor
+ 
+ :{range}!{cmd}
+ pipe range into command, and replace range with command output
+ 
+ !!{cmd}
+ pipe current line into command, and replace line with command output
+
+=== Examples ===
+
+# Sort all the lines in the buffer with the unix sort command: <pre>:%!sort</pre>
+# Sort all the lines in the buffer and remove duplicate lines: <pre>:%!sort|uniq</pre>
+# Convert the first 10 lines to upper case with the unix tr command: <pre>:1,10!tr a-z A-Z</pre>
+# Remove the lines that don't have the string "Error": <pre>:%!grep Error</pre>
+
+== Window manipulation ==
+
+ C-w s, C-w v		split window horizontally/vertically
+ C-w [arrow]		switch to the window in the specified direction
+ C-w h/j/k/l		switch to the window in the specified direction
+ C-w H/J/K/L		move the window in the specified direction
+ {n}C-w +, {n}C-w -	increase/decrease window size by n lines
+ C-w o			close all windows except the current one
+ C-w c			close current window
+ C-w q			quit window (same as :q)
+
+== Marks ==
+
+Set marks within a buffer or globally, and jump around.
+
+<pre>
+ m{a-zA-Z}		set mark at cursor position
+ '{a-z}			jump to mark
+ ''			jump to the position before latest jump
+ 
+ 'a - 'z		marks with lower case names are unique within one file
+ 'A - 'Z		marks with upper case names are unique globally
+</pre>
+
+The mark registers are saved and work even after you close and reopen vim. When you jump to a global mark (with upper case name), vim will open the file if it is not already in a buffer.
+
+== Range specifiers ==
+
+ .		current line
+ $		last line
+ 1		first line
+ %		entire file
+ 't		position of mark t
+ /pattern	the next line where pattern matches
+ ?pattern	the previous line where pattern matches
+
+Note: + or - may follow the above, with a number
+
+== Registers ==
+
+ ["x]{op}		select register x for the operation.
+ 			for example, deleted text will be inserted into x. 
+ 			or, copying will be done from register x.
+ :reg			displays the contents of registers
+
+== Case swapping == 
+
+ ~{motion}		swap case
+ g~~			switch case of current line
+ gu{motion}		make lowercase
+ guu			make current line lowercase
+ gU{motion}		make uppercase
+ g?{motion}		Rot13 encode
+
+== Substitution ==
+
+;Pattern:
+ \|	or
+ \&	and
+ 	examples: 
+ 	foobeep\&... matches foo in foobeep
+ 	.*Peter\&.*Bob matches in a line containing both Peter and Bob
+ \*	0 or more
+ \+	1 or more
+ \?	0 or 1
+ \{n,m}	n to m
+ \<	beginning of a word
+ \a	alphabetic character
+ \l	lowercase character
+ \1	same string as matched by first \(\)
+
+;Sub-replace-special:
+ \0, \&	replaced with the whole matched pattern
+ \1	replaced with the matched pattern in the first pair of ()
+ \u	next character made uppercase
+ \U	following characters made uppercase until \E
+
+;s_flags:
+ c	confirm each substitution
+ 	y: yes, l: yes then quit, n: skip, a: yes to all, q: quit
+ g	replace all occurences
+ i	ignore cases
+ I	don't ignore cases
+
+;example: change "Last, First" to "First Last"
+ :%s/\([^,]*\), \(.*\)/\2 \1/
+
+== Compiling ==
+
+Generate tag file: <code>ctags -R .</code>
+
+ :make
+ :cn			go to next error
+ :cfirst			go to first error
+ :clast			go to last error
+ :clist			list errors
+ :tag /function		jump to matching function
+
+== diffs ==
+
+The easiest way to open two files in diff mode is with <code>vimdiff file1 file2</code> or with <code>gvim -d file1 file2</code>.
+
+ [c                     jump back to the previous start of a change
+ ]c                     jump ahead to the next start of a change
+ :[range]diffg[et]      modify the current buffer to undo difference with another buffer
+ :[range]diffpu[t]      modify another buffer to undo difference with the current buffer
+ do                     same as :diffget without a range or argument
+ dp                     same as :diffput without a range or argument
+ :diffupdate            re-update the differences
+
+== Misc ==
+
+ C-a, C-x		add/subtract count to the number at or after the cursor
+ g/{pattern}/{cmd}	execute command for lines matching pattern
+ g!/{pattern}/{cmd}	execute command for lines NOT matching pattern
+ :set list		show tabs as ^I and end of line as $
+ :bufdo {cmd}		execute command in all buffers
+ :ls			show all buffers
+ gg=G			re-indent file
+ :autocmd BufWrite,BufRead *.html :normal gg=G
+     			re-indent buffer after reading and before writing an html file
+
+== Setup for python development ==
+
+If you code in python you want to comply with PEP8, and for that you want to handle white spaces in a very specific way.
+
+http://www.python.org/dev/peps/pep-0008/
+
+<pre>
+set tabstop=4		# a four-space tab indent
+set shiftwidth=4	# the < and > commands will shift by 4 spaces
+set smarttab		# use the shiftwidth for inserting real TAB when at the beginning of the line
+set expandtab		# insert spaces instead of TAB when TAB is pressed
+set softtabstop=4	# BACKSPACE and DELETE will delete 4 spaces as if they were a TAB
+set autoindent		# automatically indent when starting a new line
+</pre>
+
+== How to use vim for hex editing ==
+
+<pre>
+augroup Binary
+	au!
+	au BufReadPre  *.bin let &bin=1
+	au BufReadPost *.bin if &bin | %!xxd
+	au BufReadPost *.bin set ft=xxd | endif
+	au BufWritePre *.bin if &bin | %!xxd -r
+	au BufWritePre *.bin endif
+	au BufWritePost *.bin if &bin | %!xxd
+	au BufWritePost *.bin set nomod | endif
+augroup END
+</pre>
+
+== Tips ==
+
+Never use <tt>nmap</tt>, <tt>imap</tt>, etc, because they are recursive and can have unexpected consequences for example in some plugins. Always use <tt>nnoremap</tt> etc instead.
+
+== Incoming ==
+
+These are new tips that should be organized and merged into sections above.
+
+http://vimcasts.org/
+
+<pre>
+g;    jump back to last change position
+g,    jump forward in change positions
+:changes
+:jumps
+ctrl-w T  open current window in a new tab (works only in )
+ctrl-o   move back in jump list
+ctrl-i    move forward in jump list
+ctrl-w x   exchange the position of the current and the next windows
+:help ctrl-w
+:ls   show list of buffers and their states
+vwr_    visually select from current position until next word and replace all characters with underscore
+gj    go down in visible line, which may not be the same as the numbered line
+</pre>
+
+

@@ -1,0 +1,120 @@
+== Keyboard shortcuts ==
+
+ Backspace               when in a folder, one folder level up
+ Alt + Space + n         minimize app
+ Alt + Space + m         move window
+ Alt + Space + x         maximize window
+ Alt + Escape            lower window
+ Shift + F10             same as menu
+ W + m                   minimize all apps
+ W + Shift + w           remaximize all apps which were minimized by w-m
+ W + d                   minimize all apps. hit again to maximize them back
+ W + e                   explorer (disks)
+ W + r                   run application
+ W + Pause/Break         system properties
+ W + l                   lock
+ F6                      switch between panels in applications
+ Ctrl + Shift + Esc      task manager
+
+== Command names of interesting system programs ==
+
+Many system programs are easier to access by using the <code>W + r</code> shortcut and typing the command name rather than finding in the control panel or menus.
+
+* appwiz.cpl - The application manager, list of installed applications, uninstall, repair
+* cmd - Launch a DOS terminal
+* explorer, iexplorer, ie7 - Our beloved, folder explorer and internet explorer
+* notepad - The primitive notepad application
+* regedit - The registry editor
+* taskmgr - The task manager, with list of running applications, memory usage, terminate applications
+* sysdm.cpl - System profile
+* compmgmt.msc - Computer administration
+* services.msc - The service manager, list of all services, start/stop/restart windows services. Can also connect to other computers.
+* %JAVA_HOME% - Type any variable that contains a path to open the path in explorer
+* mstsc -v:hostname -- Launch remote desktop connection, must be enabled on target machine (system profile | remote tab)
+* mstsc -v:hostname -console -- apparently only works in win2k3 server
+* tasklist - This one can only run in a DOS terminal (cmd), shows the list of running programs, similar to ps in unix
+* runas /u:USER PROG - Run a program as a different user
+* tsadmin - View terminal server connections. Can also connect to other computers.
+
+Most of these programs are in c:\windows\system32 folder btw. That's good to know if for example you want to run them as Administrator (right click and select ''Run as...''). Since the system folder is difficult to browse (too many files), I keep shortcuts to these files for convenient access.
+
+The history of commands executed with <code>W + r</code> is stored in the registry key:
+ My Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
+
+== DOS commands and tips ==
+
+This section was migrated to [[DOS cheat sheet]].
+
+== Backup system state ==
+
+* Programs / Accessories / System Tools / Backup / My Computer / System State
+
+== How to lock computer in Remote Desktop Connection? ==
+
+There is no such menu option and all global key bindings like Ctrl+L or Ctrl+Alt+Del trigger the functions on the local machine, not on the remote desktop.
+
+The solution is the command: <code>rundll32 user32.dll,LockWorkStation</code>
+
+You might want to create a shortcut to it on the Desktop.
+
+== Other tips ==
+
+* Right-click-drag gives you the option to copy or move. (As opposed to left-click-drag, which will typically move when the source and destination drives are the same, and copy when they are different.)
+* Create keyboard shortcuts to files: right click on file, r, shortcut tab, C + Shift + some key.
+* The hosts file (equivalent to <tt>/etc/hosts</tt> in UNIX) is in <tt>%systemroot%\system32\drivers\etc\hosts</tt>
+
+== Other interesting commands ==
+
+<pre>arp.exe -a
+at.exe
+autorunsc.exe
+getmac.exe
+handle.exe -a
+hostname.exe
+ipconfig.exe /all
+msinfo32.exe /report %OUTFILE%
+nbtstat.exe -n
+nbtstat.exe -A 127.0.0.1
+nbtstat.exe -S
+nbtstat.exe -c
+net.exe share
+net.exe use
+net.exe file
+net.exe user
+net.exe accounts
+net.exe view
+net.exe start
+net.exe Session
+net.exe localgroup administrators /domain
+net.exe localgroup
+net.exe localgroup administrators
+net.exe group
+netdom.exe query DC
+netstat.exe -ao
+netstat.exe -no
+openfiles.exe /query/v
+psfile.exe
+pslist.exe
+pslist.exe -t
+psloggedon.exe
+psservice.exe
+pstat.exe
+psuptime.exe
+quser.exe
+route.exe print
+sc.exe query
+sc.exe queryex
+sclist.exe
+showgrps.exe
+srvcheck \127.0.0.1
+tasklist.exe /svc
+whoami.exe
+</pre>
+
+== Windows 7 ==
+
+* How to change environmental variables for regular user?
+** Press the Windows key and start typing "environment" and select "Edit environment variables for your account"
+** Or the geeky way: <pre>rundll32 sysdm.cpl,EditEnvironmentVariables</pre>
+
+

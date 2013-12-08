@@ -1,0 +1,40 @@
+;<- and ->: Seek backward/forward 10 seconds.
+;up and down:    Seek backward/forward 1 minute.
+;pgup and pgdown:    Seek backward/forward 10 minutes.
+;[ and ]:    Decreases/increases current playback speed by 10%.
+;{ and }:    Halves/doubles current playback speed.
+;Backspace:    Reset playback speed to normal.
+;< and >:    backward/forward in playlist
+;HOME and END:    next/previous playtree entry in the parent list
+;INS and DEL:    next/previous alternative source (ASX playlist only)
+;p / SPACE:    Pause movie (pressing again unpauses).
+;.:    Step forward. Pressing once will pause movie, every consecutive press will play one frame and then go into pause mode again (any other key unpauses).
+;q / ESC:    Stop playing and quit.
+;+ and -:    Adjust audio delay by +/- 0.1 seconds.
+;/ and *:    Decrease/increase volume.
+;9 and 0:    Decrease/increase volume.
+;m:    Mute sound.
+; # :    Cycle through the available audio tracks.
+;f:    Toggle fullscreen (also see -fs).
+;T:    Toggle stay-on-top (also see -ontop).
+;w and e:    Decrease/increase pan-and-scan range.
+;o:    Toggle OSD states: none / seek / seek + timer / seek + timer + total time.
+;d:    Toggle frame dropping states: none / skip display / skip decoding (see -framedrop and -hardframedrop).
+;v:    Toggle subtitle visibility.
+;b / j:    Cycle through the available subtitles.
+;F:    Toggle displaying "forced subtitles".
+;a:    Toggle subtitle aligment: top/middle/bottom.
+;z and x:    Adjust subtitle delay by +/- 0.1 seconds.
+;r and t:    Move subtitles up/down.
+;i:    Set EDL mark.
+
+== More ... ==
+
+The following keys are valid only when using a hardware accelerated video output (xv, (x)vidix, (x)mga, etc), the software equalizer (-vf eq or -vf eq2) or hue filter (-vf hue).
+
+;1 and 2:    Adjust contrast.
+;3 and 4:    Adjust brightness.
+;5 and 6:    Adjust hue.
+;7 and 8:    Adjust saturation.
+
+

@@ -1,0 +1,10 @@
+== Import data from CSV file ==
+
+<pre>
+create table data (...)
+.mode csv
+.separator \t
+.import file.csv data
+</pre>
+
+
