@@ -330,6 +330,10 @@ https://speakerdeck.com/u/holman/p/git-and-github-secrets
 
  git config --global user.email 'janos@xw8400'
 
+* alias remove unused branches
+
+ delete-unused-branches = "!f() { git branch | xargs git branch -d; }; f"
+
 <pre>
 # blame ignore whitespace
 git blame -w
