@@ -1,35 +1,39 @@
 http://git-scm.com/course/svn.html
 
-== svn and git ==
+## Equivalent of svn using git
 
-{| border="1" cellspacing="0" cellpadding="5" 
-! SVN
-! GIT
-|-
-| svn cat PATH
-| git show REV:PATH
-|-
-| svn diff -cREV
-| git show REV
-|-
-| svn export PATH /somewhere/else
-| git archive master > /somewhere/else/export.tar
-|-
-| svn rm --keep-local PATH
-| git rm --cached PATH
-|}
+- print the content of a file at some revision or branch
 
-== Get started ==
+        svn cat path/to/file -r REV
+        git show REV:path/to/file
 
- git config --global user.name "Your Name"
- git config --global user.email you@your.domain.com
+- print the diff of a revision
+
+        svn diff -cREV
+        git show REV
+
+- export a project subdirectory
+
+        svn export PATH /path/to/dir
+        git archive master > /path/to/export.tar
+
+- remove file from version control but keep it in the working directory
+
+        svn rm --keep-local PATH
+        git rm --cached PATH
+
+
+## Get started
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@your.domain.com
  
- git init
- git add .
- git status
- git commit -m "some message"
+    git init
+    git add .
+    git status
+    git commit -m "some message"
 
-== ~/.gitconfig ==
+## ~/.gitconfig
 
 <pre>
 [user]
@@ -47,7 +51,7 @@ http://git-scm.com/course/svn.html
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 </pre>
 
-== Revision specifiers ==
+## Revision specifiers
 
 * head
 * head^
@@ -62,65 +66,65 @@ http://git-scm.com/course/svn.html
 * rev~3
 * ...
 
-== Browse the repository, log, diff, etc ==
+## Browse the repository, log, diff, etc
 
- git log --stat
- git log --name-status
- git log --name-only
+    git log --stat
+    git log --name-status
+    git log --name-only
  
- git log rev -- path
- git show rev -- path
- git diff rev -- path
+    git log rev -- path
+    git show rev -- path
+    git diff rev -- path
 
-== How to work together with svn ==
+## How to work together with svn
 
 Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
 
- # this will create new local git repo in new dir "projname"
- git svn clone snv://path/to/repo/projname
+    # this will create new local git repo in new dir "projname"
+    git svn clone snv://path/to/repo/projname
  
- # commit changes to local repo
- git commit -m "some work"
- git commit -m "some more work"
- git commit -m "even more work"
+    # commit changes to local repo
+    git commit -m "some work"
+    git commit -m "some more work"
+    git commit -m "even more work"
  
- # pull changes from svn
- git svn rebase
+    # pull changes from svn
+    git svn rebase
  
- # commit all local changes back to svn
- git svn dcommit
+    # commit all local changes back to svn
+    git svn dcommit
 
 In case of large repositories, <code>git svn clone</code> may just stop in the middle with no error message but an apparently empty working tree. When this happens <code>cd</code> into the partially created working tree and run <code>git svn fetch</code>. You may need to repeat it a couple of times, until finally the working tree is correctly populated with files.
 
-== How to work together with svn 2 ==
+## How to work together with svn 2
 
 Scenario: work a local branch, occasionally getting upstream changes, and in the end commit back everything
 
- # create local 'work' branch and switch to it
- git checkout -b work
+    # create local 'work' branch and switch to it
+    git checkout -b work
  
- # hack away
- (work)$> git commit -m "msg 1"
- (work)$> git commit -m "msg 2"
- (work)$> git commit -m "msg 3 ..."
+    # hack away
+    (work)$> git commit -m "msg 1"
+    (work)$> git commit -m "msg 2"
+    (work)$> git commit -m "msg 3 ..."
  
- # switch to master and get upstream changes from svn
- (work)$> git checkout master
- (master)$> git svn rebase
+    # switch to master and get upstream changes from svn
+    (work)$> git checkout master
+    (master)$> git svn rebase
  
- # switch to work, rebase on master
- (master)$> git checkout work
- (work)$> git rebase master
- (work)$> git log --graph --oneline --decorate
+    # switch to work, rebase on master
+    (master)$> git checkout work
+    (work)$> git rebase master
+    (work)$> git log --graph --oneline --decorate
  
- # switch to master, merge from work, commit back to svn
- (work)$> git checkout master
- (master)$> git merge --no-ff work
- (master)$> git log --graph --oneline --decorate
- (master)$> git commit --amend
- (master)$> git svn dcommit
+    # switch to master, merge from work, commit back to svn
+    (work)$> git checkout master
+    (master)$> git merge --no-ff work
+    (master)$> git log --graph --oneline --decorate
+    (master)$> git commit --amend
+    (master)$> git svn dcommit
 
-== How to work on a svn branch ==
+## How to work on a svn branch
 
 <pre>
 git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
@@ -133,18 +137,21 @@ git svn dcommit --dry-run
 git svn dcommit
 </pre>
 
-== How to restore a deleted directory from an old revision ==
+## How to restore a deleted directory from an old revision
 
 1. Find the revision id where the path was deleted:
- git log -- path_that_was_deleted_in_a_previous_revision
+
+    git log -- path_that_was_deleted_in_a_previous_revision
 
 2. Bring back the deleted directory from the revision before the one which deleted it:
- git checkout THE_REV^ -- path_that_was_deleted_in_a_previous_revision
+
+   git checkout THE_REV^ -- path_that_was_deleted_in_a_previous_revision
 
 Note: the checkout command will not just bring it back but automatically stage it for the next commit. To unstage it:
- git reset -- path_that_was_deleted_in_a_previous_revision
 
-== How to start a local repository and push it to a server later ==
+    git reset -- path_that_was_deleted_in_a_previous_revision
+
+## How to start a local repository and push it to a server later
 
 <pre>
 cd /path/to/your/new/project
@@ -158,11 +165,11 @@ git remote add origin username@server:path/to/repos/git/project.git
 git pull origin master  # should say: "Already up-to-date."
 </pre>
 
-== How to push a git repo to svn for the first time ==
+## How to push a git repo to svn for the first time
 
 1. Create the target location inside the Subversion repository
 
- svn mkdir https://reposerver/path/to/repo/path/to/project
+    svn mkdir https://reposerver/path/to/repo/path/to/project
 
 2. Edit your git repository configuration to make the connection with git-svn
 
@@ -174,42 +181,50 @@ git pull origin master  # should say: "Already up-to-date."
 
 3. Import the empty Subversion history
 
- git svn fetch
+    git svn fetch
 
 4. Replay your commits on top of the empty Subversion history
 
- git rebase remotes/git-svn
+    git rebase remotes/git-svn
 
 5. Push the commits to Subversion
 
- git svn dcommit
+    git svn dcommit
 
-== How to ... ==
+## How to ...
 
 Restore file or dir from head or rev:
- git checkout -- path
- git checkout rev -- path
+
+    git checkout -- path
+    git checkout rev -- path
 
 Remove all untracked files:
- git clean
+
+    git clean
 
 Mark a file in the index 'assume unchanged':
- git update-index --assume-unchanged path_to_the_file
+
+    git update-index --assume-unchanged path_to_the_file
 
 ... and how to change it back:
- git update-index --no-assume-unchanged path_to_the_file
+
+    git update-index --no-assume-unchanged path_to_the_file
 
 List files that are marked 'assume unchanged' in the index:
- git ls-files -v | grep ^[a-z]
+
+    git ls-files -v | grep ^[a-z]
 
 Run this once in a while:
- git gc
+
+    git gc
 
 Create a branch and switch to it:
- git checkout -b bname
+
+    git checkout -b bname
 
 Merge from another git repository:
- git pull path_to_dir
+
+    git pull path_to_dir
 
 Track specific branches of a subversion repository:
 <pre>
@@ -221,19 +236,23 @@ Track specific branches of a subversion repository:
 </pre>
 
 Generate <tt>.gitignore</tt> in a checkout from subversion:
- git-svn show-ignore > .gitignore
+
+    git-svn show-ignore > .gitignore
 
 Fetch revisions from a remote branch:
- git fetch some_name
+
+    git fetch some_name
 
 See what has changed in a remote branch relative to current:
- git log master..some_name/master
+
+    git log master..some_name/master
 
 Two equivalent methods to merge from a branch:
- git merge some_name
- git pull . remotes/some_name/master
 
-== Other ==
+    git merge some_name
+    git pull . remotes/some_name/master
+
+## Other
 
 <pre>
 # staging hunks
@@ -250,7 +269,7 @@ git checkout $BRANCH^:$FILENAME            # $FILENAME on the first commit paren
 git checkout $BRANCH@{2}:$FILENAME         # $FILENAME two commits ago
 </pre>
 
-== Switch to Subversion branch and do some work there ==
+## Switch to Subversion branch and do some work there
 
 <pre>
 git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
@@ -263,7 +282,7 @@ git svn dcommit --dry-run
 git svn dcommit
 </pre>
 
-== Resolve conflicts ==
+## Resolve conflicts
 
 http://www.kernel.org/pub/software/scm/git/docs/v1.7.3/user-manual.html#resolving-a-merge
 
@@ -274,7 +293,7 @@ git checkout --ours path
 git commit -a
 </pre>
 
-== Cherry picking ==
+## Cherry picking
 
 Cherry-pick merge revisions in other branch that are not in master.
 
@@ -284,9 +303,9 @@ git cherry-pick --abort
 git rev-list ^master other-branch | git cherry-pick -n --stdin
 </pre>
 
-== Doing on the daily ==
+## Doing on the daily
 
-=== Commit temporary changes to a separate branch ===
+### Commit temporary changes to a separate branch
 
 <pre>
 git checkout -b some-name-describing-the-change
@@ -294,45 +313,45 @@ git commit -m 'describe the change' file1 file2
 git checkout master
 </pre>
 
-== gitk ==
+## gitk
 
- # see all branches
- gitk --all
+    # see all branches
+    gitk --all
 
-== unsorted ==
+## unsorted
 
 https://speakerdeck.com/u/holman/p/git-and-github-secrets
 
- git show :/something  # last matched commit search
- # master@{1.day.ago}
- # master@{yesterday}
- git log branchA ^branchB  # commits in branchA not in branchB
- git status -sb
- git diff HEAD^ --stat
- git config --global color.ui 1
- git branch --contains sha1
+    git show :/something  # last matched commit search
+    # master@{1.day.ago}
+    # master@{yesterday}
+    git log branchA ^branchB  # commits in branchA not in branchB
+    git status -sb
+    git diff HEAD^ --stat
+    git config --global color.ui 1
+    git branch --contains sha1
 
- # copy file without switching branches
- git checkout branchname -- path/to/file
+    # copy file without switching branches
+    git checkout branchname -- path/to/file
 
 * click a line on github : adds #L123 to the url
 * works with ranges too
 
- git rev-list --reverse branch1 ^master --author codername sha1.. | git cherry-pick -n --stdin
+    git rev-list --reverse branch1 ^master --author codername sha1.. | git cherry-pick -n --stdin
 
 * cherry pick the revisions that are in branch1 but not in master, by specific author, after specific revision
 
 * change the url of a remote
 
- git remote set-url origin git://new.url.here
+    git remote set-url origin git://new.url.here
 
 * set user email address
 
- git config --global user.email 'janos@xw8400'
+    git config --global user.email 'janos@xw8400'
 
 * alias remove unused branches
 
- delete-unused-branches = "!f() { git branch | xargs git branch -d; }; f"
+    delete-unused-branches = "!f() { git branch | xargs git branch -d; }; f"
 
 <pre>
 # blame ignore whitespace
@@ -360,15 +379,15 @@ git config --global help.autocorrect 1
 git shortlog -sn
 </pre>
 
-== View differences with a diff tool ==
+## View differences with a diff tool
 
- # only when using for the first time, or to change the diff tool
- git config diff.tool gvimdiff
+    # only when using for the first time, or to change the diff tool
+    git config diff.tool gvimdiff
  
- # the -y is to skip the prompt "Launch 'gvimdiff' [Y/n]"
- git difftool -y branchname -- ./path/to/file
+    # the -y is to skip the prompt "Launch 'gvimdiff' [Y/n]"
+    git difftool -y branchname -- ./path/to/file
 
-== How to push the current branch somewhere else and track it ==
+## How to push the current branch somewhere else and track it
 
 <pre>
 git init --bare /path/to/somewhere/else
@@ -377,13 +396,13 @@ git push -u /path/to/somewhere/else master
 
 After this you can do <code>git push</code> with no args to push to that location.
 
-== Rename branch ==
+## Rename branch
 
- git branch -m old_branch new_branch
+    git branch -m old_branch new_branch
 
-== Delete remote branches ==
+## Delete remote branches
 
- git push origin :BRANCHNAME
+    git push origin :BRANCHNAME
 
 For example:
 
@@ -397,7 +416,7 @@ To git@github.com:user/repo
  - [deleted]         blah
 </pre>
 
-== Remotes ==
+## Remotes
 
 <pre>
 # show all remotes
@@ -419,7 +438,7 @@ git checkout -b feature1 sample/feature1
 git checkout feature1
 </pre>
 
-== Create a patch from pending changes ==
+## Create a patch from pending changes
 
 You cannot. You have to commit the pending changes and then you can create a patch from the commit.
 This is not really limiting, as you can easily create a temporary branch for the temporary commit.
@@ -428,7 +447,7 @@ Otherwise you may lose it by mistake.
 
 The commit log message will be used in the filename of the patch file, with spaces and other fancy characters replaced. Write a good a log message.
 
-== Create a patch from a commit ==
+## Create a patch from a commit
 
 <pre>
 # Create a patch from any revision
@@ -438,7 +457,7 @@ git format-patch REV
 git format-patch HEAD^
 </pre>
 
-== random memo ==
+## random memo
 
 <pre>
 # show last 5 revision numbers
@@ -454,7 +473,7 @@ git merge sha1
 git checkout master -- dirname
 </pre>
 
-== notes from Zach ==
+## notes from Zach
 
 https://speakerdeck.com/holman/more-git-and-github-secrets
 
@@ -497,7 +516,7 @@ git fetch origin pull/12/head:pr
 ** branch switcher: type [w]
 ** quick search: type [s]
 
-== Links ==
+## Links
 
 * http://cheat.errtheblog.com/s/git
 
