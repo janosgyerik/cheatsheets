@@ -94,7 +94,7 @@ Scenario: simple lock-step model, the rough equivalent of using svn checkout + s
     # commit all local changes back to svn
     git svn dcommit
 
-In case of large repositories, <code>git svn clone</code> may just stop in the middle with no error message but an apparently empty working tree. When this happens <code>cd</code> into the partially created working tree and run <code>git svn fetch</code>. You may need to repeat it a couple of times, until finally the working tree is correctly populated with files.
+In case of large repositories, `git svn clone` can sometimes stop in the middle with no error message but an apparently empty working tree. When this happens `cd` into the partially created working tree and run `git svn fetch`. You might have to repeat it a couple of times, until finally the working tree is correctly populated with files.
 
 ## How to work together with svn 2
 
