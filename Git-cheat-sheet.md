@@ -1,72 +1,91 @@
+## Migrating from Subversion
+
 http://git-scm.com/course/svn.html
 
-## Equivalent of svn using git
-
-- print the content of a file at some revision or branch
+- Print the content of a file at some revision or branch:
 
         svn cat path/to/file -r REV
         git show REV:path/to/file
 
-- print the diff of a revision
+- Print the diff of a revision:
 
         svn diff -cREV
         git show REV
 
-- export a project subdirectory
+- Export a project subdirectory:
 
         svn export PATH /path/to/dir
         git archive master > /path/to/export.tar
 
-- remove file from version control but keep it in the working directory
+- Remove file from version control but keep it in the working directory:
 
         svn rm --keep-local PATH
         git rm --cached PATH
 
 
-## Get started
+## Getting started
+
+Set username and email that will be recorded in commits:
 
     git config --global user.name "Your Name"
     git config --global user.email you@your.domain.com
  
-    git init
-    git add .
+Convert any directory to a Git repository:
+
+    git init     # create repo in current dir or specified path
+    git add .    # add all files in current dir and all subdirs
     git status
-    git commit -m "some message"
+    git commit -m "added project files"
 
 ## ~/.gitconfig
 
-<pre>
-[user]
-    name = Janos Gyerik
-    email = me@my.domain.com
+An example configuration.
+Most importantly, shorter version of commands,
+to reduce typing dramatically,
+and for familiarity with other systems (`co`, `st`, `ci`, ...)
 
-[alias]
-    st = status
-    ci = commit
-    br = branch
-    co = checkout
-    ls = ls-files
-    ign = ls-files -o -i --exclude-standard
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-</pre>
+    [user]
+        name = Janos Gyerik
+        email = me@my.domain.com
 
-## Revision specifiers
+    [alias]
+        st = status
+        ci = commit
+        br = branch
+        co = checkout
+        ls = ls-files
+        ign = ls-files -o -i --exclude-standard
+        lol = log --graph --decorate --pretty=oneline --abbrev-commit
+        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
-* head
-* head^
-* head^^
-* head^^^
-* head^^^^
-* head~4
-* ...
-* rev^
-* rev^^
-* rev^^^
-* rev~3
-* ...
+        # View the SHA, description, and history graph of the latest 20 commits
+        l = log --pretty=oneline -n 20 --graph
+        # View the current working tree status using the short format
+        s = status -sb
+        # Show verbose output about tags, branches or remotes
+        tags = tag -l
+        branches = branch -a
+        remotes = remote -v
 
-## Browse the repository, log, diff, etc
+    [url "git@github.com:"]
+        insteadOf = "gh:"
+        pushInsteadOf = "github:"
+        pushInsteadOf = "git://github.com/"
+
+## Specifying recent revisions
+
+    git log HEAD        # the current checkout points to this commit
+    git log HEAD^       # previous commit
+    git log HEAD^^      # 2 commits ago
+    git log HEAD~5      # 5 commits ago
+    git log treeish^    # the commit before "treeish": branch / tag / SHA
+    git log treeish^^   # 2 commits before treeish
+    git log treeish~5   # 5 commits before treeish
+
+In case insensitive filesystems like Windows,
+instead of uppercase `HEAD` you can get away with lowercase `head` too.
+
+## Browsing the repository, log, diff, etc
 
     git log --stat
     git log --name-status
@@ -76,27 +95,29 @@ http://git-scm.com/course/svn.html
     git show rev -- path
     git diff rev -- path
 
-## How to work together with svn
+## Working with a Subversion repository
 
 Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
 
     # this will create new local git repo in new dir "projname"
-    git svn clone snv://path/to/repo/projname
+    git svn clone svn://path/to/repo/projname
+    # note: this can take a long time
+    # note: this can hang in the middle. When that happens,
+    # cd into the partial clone, and run `git svn fetch`.
+    # That too may hang, just keep repeating `git svn fetch` until success.
  
     # commit changes to local repo
     git commit -m "some work"
     git commit -m "some more work"
     git commit -m "even more work"
  
-    # pull changes from svn
+    # get changes from svn, and rebase local work on top of it
     git svn rebase
  
-    # commit all local changes back to svn
+    # push local changes back to svn, as multiple individual commits
     git svn dcommit
 
-In case of large repositories, `git svn clone` can sometimes stop in the middle with no error message but an apparently empty working tree. When this happens `cd` into the partially created working tree and run `git svn fetch`. You might have to repeat it a couple of times, until finally the working tree is correctly populated with files.
-
-## How to work together with svn 2
+## TODO: How to work together with svn 2
 
 Scenario: work a local branch, occasionally getting upstream changes, and in the end commit back everything
 
