@@ -95,7 +95,7 @@ instead of uppercase `HEAD` you can get away with lowercase `head` too.
     git show rev -- path
     git diff rev -- path
 
-## Working with a Subversion repository
+## Working with a Subversion repository in lock-step with upstream
 
 Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
 
@@ -117,35 +117,32 @@ Scenario: simple lock-step model, the rough equivalent of using svn checkout + s
     # push local changes back to svn, as multiple individual commits
     git svn dcommit
 
-## TODO: How to work together with svn 2
+## Working with a Subversion repository and local Git branches
 
-Scenario: work a local branch, occasionally getting upstream changes, and in the end commit back everything
+Scenario: same as earlier, but this time use local Git branches
 
     # create local 'work' branch and switch to it
     git checkout -b work
  
-    # hack away
-    (work)$> git commit -m "msg 1"
-    (work)$> git commit -m "msg 2"
-    (work)$> git commit -m "msg 3 ..."
- 
-    # switch to master and get upstream changes from svn
-    (work)$> git checkout master
-    (master)$> git svn rebase
- 
-    # switch to work, rebase on master
-    (master)$> git checkout work
-    (work)$> git rebase master
-    (work)$> git log --graph --oneline --decorate
- 
-    # switch to master, merge from work, commit back to svn
-    (work)$> git checkout master
-    (master)$> git merge --no-ff work
-    (master)$> git log --graph --oneline --decorate
-    (master)$> git commit --amend
-    (master)$> git svn dcommit
+    # work work work...
+    git commit -m "some work"
+    git commit -m "some more work"
+    git commit -m "even more work"
 
-## How to work on a svn branch
+    # switch back to master and get upstream changes from svn
+    git checkout master
+    git svn rebase
+ 
+    # switch to work, rebase on top of master
+    git checkout work
+    git rebase master
+
+    # switch back to master, merge from work, and push back to svn
+    git checkout master
+    git merge work
+    git svn dcommit
+
+## TODO: How to work on a svn branch
 
 <pre>
 git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
