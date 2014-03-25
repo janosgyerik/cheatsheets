@@ -155,21 +155,22 @@ git svn dcommit --dry-run
 git svn dcommit
 </pre>
 
-## How to restore a deleted directory from an old revision
+## Restoring a deleted directory from an old revision
 
-1. Find the revision id where the path was deleted:
+Find the SHA where the path was deleted:
 
-    git log -- path_that_was_deleted_in_a_previous_revision
+    git log -- path/to/deleted/dir
 
-2. Bring back the deleted directory from the revision before the one which deleted it:
+Bring back the deleted directory from the revision before the one which deleted it:
 
-   git checkout THE_REV^ -- path_that_was_deleted_in_a_previous_revision
+   git checkout SHA^ -- path/to/deleted/dir
 
-Note: the checkout command will not just bring it back but automatically stage it for the next commit. To unstage it:
+Note: the checkout command will bring back and add the directory to the staging area.
+If you want, you can unstage with:
 
-    git reset -- path_that_was_deleted_in_a_previous_revision
+    git reset -- path/to/deleted/dir
 
-## How to start a local repository and push it to a server later
+## TODO: How to start a local repository and push it to a server later
 
 <pre>
 cd /path/to/your/new/project
