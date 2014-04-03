@@ -142,22 +142,30 @@ Scenario: same as earlier, but this time use local Git branches
     git merge work
     git svn dcommit
 
-## TODO: How to work on a svn branch
+## Working on a Subversion branch
 
 <pre>
+# add the url of the branch, and give it a "refname"
 git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
 git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
+
+# fetch the branch
 git svn fetch newbranchname [-r<rev>]
+
+# create a local branch from the remote reference
 git checkout -b local-newbranchname -t newbranchname
+
+# update the local branch from the remote reference
 git svn rebase newbranchname
-...
+
+# push the new revisions to subversion
 git svn dcommit --dry-run
 git svn dcommit
 </pre>
 
 ## Restoring a deleted directory from an old revision
 
-Find the SHA where the path was deleted:
+If you know the path you want to restore, find the SHA where it was deleted:
 
     git log -- path/to/deleted/dir
 
@@ -165,8 +173,8 @@ Bring back the deleted directory from the revision before the one which deleted 
 
    git checkout SHA^ -- path/to/deleted/dir
 
-Note: the checkout command will bring back and add the directory to the staging area.
-If you want, you can unstage with:
+The above command will create the specified path in the working tree
+and add it to the staging area. If you want to unstage:
 
     git reset -- path/to/deleted/dir
 
