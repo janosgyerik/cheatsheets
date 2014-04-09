@@ -135,3 +135,11 @@ With the <code>oracle</code> user.
  imp file=/tmp/exp.dmp log=/tmp/imp.log
 
 
+== Show the source code of a trigger ==
+
+<pre>
+-- dumps the code of the trigger as text
+SELECT TEXT FROM USER_SOURCE WHERE NAME='NAME_OF_YOUR_TRIGGER' AND TYPE='TRIGGER';
+-- dumps the trigger as CLOB
+SELECT dbms_metadata.get_ddl('TRIGGER', 'NAME_OF_YOUR_TRIGGER', USER) FROM DUAL
+</pre>
