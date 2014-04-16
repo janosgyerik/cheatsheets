@@ -178,7 +178,7 @@ and add it to the staging area. If you want to unstage:
 
     git reset -- path/to/deleted/dir
 
-## TODO: How to start a local repository and push it to a server later
+## How to start a local repository and push it to a server later
 
 <pre>
 cd /path/to/your/new/project
@@ -192,7 +192,7 @@ git remote add origin username@server:path/to/repos/git/project.git
 git pull origin master  # should say: "Already up-to-date."
 </pre>
 
-## How to push a git repo to svn for the first time
+## TODO: How to push a git repo to svn for the first time
 
 1. Create the target location inside the Subversion repository
 
