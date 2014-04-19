@@ -95,6 +95,10 @@ instead of uppercase `HEAD` you can get away with lowercase `head` too.
     git show rev -- path
     git diff rev -- path
 
+## Searching for past commits
+
+    git log --grep keyword
+
 ## Working with a Subversion repository in lock-step with upstream
 
 Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
