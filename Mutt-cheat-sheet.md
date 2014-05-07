@@ -19,7 +19,7 @@ Automatically move read mails out of Inbox
 
 * By default, all mails are appended to `~/Mail/root`
 
-* To automatically move read mails to `~/Mail/read_inbox` when exiting mutt, at this to `.muttrc`
+* To automatically move read mails to `~/Mail/read_inbox` when exiting mutt, add this to `.muttrc`
 
         set move=yes
         set mbox=+read_inbox
