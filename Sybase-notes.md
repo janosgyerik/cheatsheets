@@ -13,7 +13,7 @@
 
     SELECT * FROM sysobjects WHERE type='U' order by name
 
-## Find the columns of a table
+## Find the columns and schema of a table
 
     sp_help TABLENAME
 
@@ -28,4 +28,7 @@
 
 To make the output more readable, replace all occurrences of `/n` with a line break.
 
+## Renaming a table
+
+    sp_rename 'oldname', 'newname'
 
