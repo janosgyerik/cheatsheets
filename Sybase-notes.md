@@ -1,13 +1,13 @@
-```
-sp_help STRING
-sp_helpdb DBNAME
-sp_configure
-sp_who
-sp_spaceused TABLENAME
+## Random memo
 
-SELECT name, type FROM dbo.sysobjects WHERE type IN ('U', 'V')
-GO
-```
+    sp_help STRING
+    sp_helpdb DBNAME
+    sp_configure
+    sp_who
+    sp_spaceused TABLENAME
+    
+    SELECT name, type FROM dbo.sysobjects WHERE type IN ('U', 'V')
+    GO
 
 ## Find all tables
 
@@ -15,16 +15,17 @@ GO
 
 ## Find the columns of a table
 
-```
-SELECT syscolumns.name, syscolumns.* 
-FROM syscolumns JOIN sysobjects
-       ON syscolumns.id=sysobjects.id
-WHERE sysobjects.name='the_table'
-```
+    sp_help TABLENAME
+
+    SELECT syscolumns.name, syscolumns.* 
+    FROM syscolumns JOIN sysobjects
+           ON syscolumns.id=sysobjects.id
+    WHERE sysobjects.name='TABLENAME'
 
 ## Get the definition of a stored procedure
-```
-sp_helptext name_of_sp
-```
+
+    sp_helptext name_of_sp
+
 To make the output more readable, replace all occurrences of `/n` with a line break.
+
 
