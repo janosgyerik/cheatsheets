@@ -196,7 +196,7 @@ git remote add origin username@server:path/to/repos/git/project.git
 git pull origin master  # should say: "Already up-to-date."
 </pre>
 
-## TODO: How to push a git repo to svn for the first time
+## How to push a git repo to svn for the first time
 
 1. Create the target location inside the Subversion repository
 
@@ -222,16 +222,28 @@ git pull origin master  # should say: "Already up-to-date."
 
     git svn dcommit
 
+## Removing untracked files
+
+The `git clean` command is very sophisticated with many useful options.
+
+    # by default doesn't remove anything, wouldn't be safe!
+    git clean
+    
+    # dry run, check what would be removed
+    git clean -n
+
+    # force, really remove untracked files
+    git clean -f
+    
+    # interactive mode
+    git clean -i
+    
 ## How to ...
 
 Restore file or dir from head or rev:
 
     git checkout -- path
     git checkout rev -- path
-
-Remove all untracked files:
-
-    git clean
 
 Mark a file in the index 'assume unchanged':
 
