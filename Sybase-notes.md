@@ -32,3 +32,9 @@ To make the output more readable, replace all occurrences of `/n` with a line br
 
     sp_rename 'oldname', 'newname'
 
+## Dates
+
+    -- get day part of a date
+    SELECT DATEPART(day, getdate())
+    -- returns 11
+    SELECT DATEPART(day, '20140711')
