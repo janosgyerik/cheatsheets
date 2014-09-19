@@ -4,23 +4,23 @@ IntelliJ cheat sheet
 My cheat sheet of IntelliJ (and PyCharm) shortcuts.
 
 
-Configuration
+Initial setup
 -------------
 
 - Open settings:
-  Control Alt s or cmd ,
+  <kbd>Control</kbd>+<kbd>Alt</kbd>+<kbd>s</kbd> or <kbd>cmd</kbd>+<kbd>,</kbd>
 
 - Disable spell checking:
-  Filter by: "spell", **Inspections / Spelling / Typo**
+  - Filter by *"spell"*, and then: **Inspections / Spelling / Typo**
 
 - Ensure line feed at file end:
-  Filter by: "end of line", **Editor / Ensure line feed at file end on Save**
+  - Filter by *"end of line"*, and then: **Editor / Ensure line feed at file end on Save**
 
 - Jump to high priority errors first:
-  Filter by: "next error", **Editor / 'Next Error' action goes to high priority problems only**
+  - Filter by *"next error"*, and then: **Editor / 'Next Error' action goes to high priority problems only**
 
 - Show line numbers:
-  Filter by: "line num", **Editor / Appearance / Show line numbers**
+  - Filter by: "line num", **Editor / Appearance / Show line numbers**
 
 
 Windows
