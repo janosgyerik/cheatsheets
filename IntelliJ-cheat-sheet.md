@@ -1,5 +1,5 @@
-IntelliJ
-========
+IntelliJ cheat sheet
+====================
 
 My cheat sheet of IntelliJ (and PyCharm) shortcuts.
 
