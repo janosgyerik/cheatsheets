@@ -20,7 +20,7 @@ Initial setup
   - Filter by *"next error"*, and then: **Editor / 'Next Error' action goes to high priority problems only**
 
 - Show line numbers:
-  - Filter by: "line num", **Editor / Appearance / Show line numbers**
+  - Filter by: *"line num"*, and then: **Editor / Appearance / Show line numbers**
 
 
 Windows
