@@ -8,7 +8,7 @@ Initial setup
 -------------
 
 - Open settings:
-  <kbd>Control</kbd>+<kbd>Alt</kbd>+<kbd>s</kbd> or <kbd>cmd</kbd>+<kbd>,</kbd>
+  <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>s</kbd> or <kbd>cmd</kbd> + <kbd>,</kbd>
 
 - Disable spell checking:
   - Filter by *"spell"*, and then: **Inspections / Spelling / Typo**
