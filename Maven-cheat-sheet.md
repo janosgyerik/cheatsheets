@@ -1,4 +1,4 @@
-* Skip tests during the install step
+* Skip tests during the install step:
 
         mvn install -Dmaven.test.skip=true
 
@@ -7,7 +7,7 @@
         # can omit package name
         mvn test -Dtest=TheSimpleName
 
-* Force re-downloading artifacts from Nexus
+* Force re-downloading artifacts:
 
         mvn compile -U
 
