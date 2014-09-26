@@ -2,6 +2,11 @@
 
         mvn install -Dmaven.test.skip=true
 
+* Run unit test of specific class only:
+
+        # can omit package name
+        mvn test -Dtest=TheSimpleName
+
 * Force re-downloading artifacts from Nexus
 
         mvn compile -U
@@ -18,7 +23,10 @@
           -DgroupId=GROUP_ID \
           -Dclassifier=BRANCH
 
-* Run unit test of specific class only:
+* Print list of dependencies:
 
-        # can omit package name
-        mvn test -Dtest=TheSimpleName
+        mvn dependency:list
+
+* Print tree of dependencies:
+
+        mvn dependency:tree
