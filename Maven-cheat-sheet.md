@@ -17,3 +17,8 @@
           -Dpackaging=jar \
           -DgroupId=GROUP_ID \
           -Dclassifier=BRANCH
+
+* Run unit test of specific class only:
+
+        # can omit package name
+        mvn test -Dtest=TheSimpleName
