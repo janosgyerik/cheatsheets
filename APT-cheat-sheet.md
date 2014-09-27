@@ -109,9 +109,9 @@ Example commands:
 Resources
 ---------
 
-1. `apt-cache search -n ^apt-`
-1. [Debian Documentation Project][1]
-1. [APT HOWTO][2]
+- `apt-cache search -n ^apt-`
+- [Debian Documentation Project][1]
+- [APT HOWTO][2]
 
-1: http://www.debian.org/doc/ddp
-2: http://www.debian.org/doc/manuals/apt-howto/index.en.html
+[1]: http://www.debian.org/doc/ddp
+[2]: http://www.debian.org/doc/manuals/apt-howto/index.en.html
