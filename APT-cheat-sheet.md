@@ -1,6 +1,7 @@
-= Advanced Package Tool =
+Advanced Package Tool
+=====================
 
-Various tips on debian's '''apt''' utilities like <code>apt-get</code>, <code>apt-cache</code>, <code>apt-file</code>, etc.
+Various tips on debian's *apt* utilities like `apt-get`, `apt-cache`, `apt-file`, `dpkg`, etc.
 
 === <code>/etc/apt/sources.list</code> ===
 
