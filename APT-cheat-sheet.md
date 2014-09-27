@@ -3,26 +3,34 @@ Advanced Package Tool
 
 Various tips on debian's *apt* utilities like `apt-get`, `apt-cache`, `apt-file`, `dpkg`, etc.
 
-=== <code>/etc/apt/sources.list</code> ===
+/etc/apt/sources.list
+---------------------
 
-;netselect: A program which determines the fastest server from a list of hosts given on the command line.
-;netselect-apt: A program which generates a sources.list file using the best debian mirror.
+- `netselect`:
+  A program which determines the fastest server from a list of hosts given on the command line.
 
-The <code>netselect-apt</code> program can be found in the <code>netselect</code> source package. To install the <code>netselect</code> source package, add appropriate <code>deb-src</code> lines to <code>/etc/apt/sources.list</code> like:
+- `netselect-apt`:
+  A program which generates a sources.list file using the best debian mirror.
 
- deb-src http://http.us.debian.org/debian testing main contrib non-free
- deb-src http://non-us.debian.org/debian-non-US testing/non-US main contrib non-free
+The `netselect-apt` program can be found in the `netselect` source package.
+To install the `netselect` source package,
+add appropriate `deb-src` lines to `/etc/apt/sources.list`, for example:
 
-then
+    deb-src http://http.us.debian.org/debian testing main contrib non-free
+    deb-src http://non-us.debian.org/debian-non-US testing/non-US main contrib non-free
 
- apt-get update
- apt-get source netselect
+and then after:
 
-The above procedure will generate a directory with the netselect source, named for example <code>netselect-0.3.ds1</code>.
+    apt-get update
+    apt-get source netselect
 
-To generate a <code>sources.list</code> file for the testing distribution, run <code>./netselect-0.3.ds1/netselect-apt testing</code>.
+The above procedure will generate a directory with the netselect source, named for example `netselect-0.3.ds1`.
 
-=== Install/remove ===
+To generate a `sources.list` file for the testing distribution,
+run `./netselect-0.3.ds1/netselect-apt testing`.
+
+Install/remove
+--------------
 
  apt-get install pkg1 pkg2-
     Install pkg1 and remove pkg2.
