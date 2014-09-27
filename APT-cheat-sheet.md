@@ -32,22 +32,25 @@ run `./netselect-0.3.ds1/netselect-apt testing`.
 Install/remove
 --------------
 
- apt-get install pkg1 pkg2-
-    Install pkg1 and remove pkg2.
- 
- apt-get remove pkg1 pkg2+
-    Remove pkg1 and install pkg2.
- 
- -u
-    Causes APT to show the complete list of packages which will be upgraded (when doing apt-get upgrade or apt-get dist-upgrade).
- 
- apt-get -t dist install pkg
-    Install pkg from distribution dist. 
- 
- apt-get install package=version
-    Install a specific version of a package.
+Example commands:
 
-=== Search ===
+    # Install pkg1 and remove pkg2.
+    apt-get install pkg1 pkg2-
+    
+    # Remove pkg1 and install pkg2.
+    apt-get remove pkg1 pkg2+
+
+    # Install pkg from distribution dist. 
+    apt-get -t dist install pkg
+    
+    # Install a specific version of a package.
+    apt-get install package=version
+    
+The `-u` flag causes APT to show the complete list of packages which will be upgraded
+(when doing `apt-get upgrade` or `apt-get dist-upgrade`).
+
+Search
+------
 
  apt-cache search regexp
  apt-cache show pkg
