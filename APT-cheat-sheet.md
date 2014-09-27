@@ -52,54 +52,66 @@ The `-u` flag causes APT to show the complete list of packages which will be upg
 Search
 ------
 
- apt-cache search regexp
- apt-cache show pkg
- apt-cache showpkg pkg
- COLUMNS=132 dpkg -l pattern
- 
- dpkg -S file
-    Search for a filename in installed packages.
- 
- dpkg -L package
-    List files installed from package.
- 
- apt-file update
-    Update the database of files all packages contain.
- 
- apt-file search file
-    Search for a filename in all packages.
+Example commands:
 
-=== Using source packages ===
+    apt-cache search regexp
+    apt-cache show pkg
+    apt-cache showpkg pkg
+    COLUMNS=132 dpkg -l pattern
+    
+    # Search for a filename in installed packages.
+    dpkg -S file
+    
+    # List files installed from package.
+    dpkg -L package
+    
+    # Update the database of files all packages contain.
+    apt-file update
+    
+    # Search for a filename in all packages.
+    apt-file search file
 
- apt-get source pkgname
- 
- apt-get -b source pkgname
-    Automatically build the downloaded package.
- 
- dpkg-buildpackage -rfakeroot -uc -b
-    Build the package later, do this from within the directory that was created after downloading the source package.
- 
- dpkg -i file.deb
- 
- apt-get build-dep pkg
-    Install the packages required for pkg to be built. (Sources must be installed separately by apt-get source.)
+Using source packages
+---------------------
 
-=== Miscellaneous ===
+Example commands:
 
- apt-show-versions
-    Lists available package versions with distribution.
- 
- apt-show-versions -u
-    Display a list of upgradeable packages.
- 
- apt-cache depends pkgname
- 
- apt-cache rdepends pkgname
+    apt-get source pkgname
+    
+    # Automatically build the downloaded package.
+    apt-get -b source pkgname
+    
+    # Build the package later, do this from within the directory
+    # that was created after downloading the source package.
+    dpkg-buildpackage -rfakeroot -uc -b
+    
+    dpkg -i file.deb
+    
+    # Install the packages required for pkg to be built. 
+    # (Sources must be installed separately by apt-get source.)
+    apt-get build-dep pkg
 
-=== Resources ===
+Miscellaneous
+-------------
 
-# <code>apt-cache search -n ^apt-</code>
-# [http://www.debian.org/doc/ddp Debian Documentation Project]
-# [http://www.debian.org/doc/manuals/apt-howto/index.en.html APT HOWTO]
+Example commands:
 
+    # Lists available package versions with distribution.
+    apt-show-versions
+    
+    # Display a list of upgradeable packages.
+    apt-show-versions -u
+    
+    apt-cache depends pkgname
+    
+    apt-cache rdepends pkgname
 
+Resources
+---------
+
+1. `apt-cache search -n ^apt-`
+1. [Debian Documentation Project][1]
+1. [APT HOWTO][2]
+
+1: http://www.debian.org/doc/ddp
+2: http://www.debian.org/doc/manuals/apt-howto/index.en.html
