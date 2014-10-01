@@ -26,9 +26,10 @@ Initial setup
 Windows
 -------
 
+    alt enter           intention actions
     control alt s       open settings
     control n           open class
-    control shift n     open file (resource)
+    control shift n     open file / resource
     control shift a     find action by name
     F2                  jump to next error
     control b           jump to declaration
@@ -36,19 +37,22 @@ Windows
     alt /               complete word
     esc esc             switch to editor
     alt 1               switch to / toggle project tool window
-    alt insert          new file
+    alt insert          new file / package / constructor / ...
     alt shift up        move line up
     control F4          close window
     shift delete        cut current line
+    control x           cut current line
+    control y           delete current line
     control g           go to line
 
 
 Linux
 -----
 
+    alt enter           intention actions
     control alt s       open settings
     control shift t     open class
-    control shift r     open file (resource)
+    control shift r     open file / resource
     control shift a     find action by name
     F2                  jump to next error
     F3                  jump to declaration
@@ -56,7 +60,7 @@ Linux
     alt /               complete word
     esc esc             switch to editor
     alt 1               switch to / toggle project tool window
-    alt insert          new file
+    alt insert          new file / package / constructor / ...
     alt up              move line up
     control F4          close window
     shift delete        cut current line
@@ -66,6 +70,7 @@ Linux
 Mac OS X
 --------
 
+    option enter        intention actions
     cmd ,               open settings
     cmd o               open class
     cmd shift o         open file (resource)
@@ -76,7 +81,13 @@ Mac OS X
     option /            complete word
     esc esc             switch to editor
     cmd 1               switch to project tool window
-    cmd n               new file
-    cmd shift up        move line up
+    control n           new file / package / constructor / ...
+    cmd shift up        move up statement / method / class / ...
+    option shift up     move up line
     cmd w               close window
-    cmd backspace       delete current line
+    cmd x               cut current line
+    cmd y               delete current line
+    cmd g               jump to line
+    run unit test       control shift F10
+    run last            shift F10
+    cmd option l        reindent, reformat, organize
