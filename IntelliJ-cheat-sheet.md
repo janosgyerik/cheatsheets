@@ -38,7 +38,7 @@ Windows
     esc esc             switch to editor
     alt 1               switch to / toggle project tool window
     alt insert          new file / package / constructor / ...
-    alt shift up        move line up
+    control shift up    move up statement / method / class / ...
     control F4          close window
     shift delete        cut current line
     control x           cut current line
