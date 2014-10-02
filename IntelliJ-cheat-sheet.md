@@ -43,7 +43,9 @@ Windows
     shift delete        cut current line
     control x           cut current line
     control y           delete current line
-    control g           go to line
+    control g           jump to line
+    run unit test       control shift F10
+    run last            shift F10
 
 
 Linux
