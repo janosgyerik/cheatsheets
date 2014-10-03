@@ -46,6 +46,7 @@ Windows
     control g           jump to line
     run unit test       control shift F10
     run last            shift F10
+    control pageup      jump to top
 
 
 Linux
@@ -67,6 +68,7 @@ Linux
     control F4          close window
     shift delete        cut current line
     control l           jump to line
+    control pageup      jump to top
 
 
 Mac OS X
