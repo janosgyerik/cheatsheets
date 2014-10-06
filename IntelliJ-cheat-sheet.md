@@ -47,6 +47,7 @@ Windows
     run unit test       control shift F10
     run last            shift F10
     control pageup      jump to top
+    alt j               macro trigger key (see Macros section below)
 
 
 Linux
@@ -95,3 +96,15 @@ Mac OS X
     run unit test       control shift F10
     run last            shift F10
     cmd option l        reindent, reformat, organize
+    cmd j               macro trigger key (see Macros section below)
+
+Macros
+------
+
+Macros are useful to insert code templates.
+
+To run macros, just type the letters where you want to insert it in the code,
+and press the trigger key (see shortcuts above).
+
+    sout        insert System.out.println()
+    iter        insert for-each iterator to iterate over an iterable in the current scope
