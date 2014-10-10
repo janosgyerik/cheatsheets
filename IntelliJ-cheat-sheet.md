@@ -48,7 +48,7 @@ Windows
     run last            shift F10
     control pageup      jump to top
     alt j               macro trigger key (see Macros section below)
-    control h           open type hierarchy
+    control h           open type hierarchy : control Enter to open selected
 
 
 Linux
