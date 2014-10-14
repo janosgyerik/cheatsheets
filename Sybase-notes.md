@@ -38,3 +38,20 @@ To make the output more readable, replace all occurrences of `/n` with a line br
     SELECT DATEPART(day, getdate())
     -- returns 11
     SELECT DATEPART(day, '20140711')
+
+    -- yesterday
+    SELECT dateadd(day, -1, getdate())
+    -- last month
+    SELECT dateadd(month, -1, getdate())
+
+## Converting between types, casting
+
+    -- returns 12
+    SELECT CONVERT(int, STR_REPLACE('12M', 'M', ''))
+
+## Misc
+
+    -- between and not between
+    SELECT * FROM aTable WHERE CODE BETWEEN 877 AND 885
+    SELECT * FROM aTable WHERE CODE NOT BETWEEN 877 AND 885
+    
