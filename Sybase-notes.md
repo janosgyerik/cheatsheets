@@ -55,3 +55,25 @@ To make the output more readable, replace all occurrences of `/n` with a line br
     SELECT * FROM aTable WHERE CODE BETWEEN 877 AND 885
     SELECT * FROM aTable WHERE CODE NOT BETWEEN 877 AND 885
     
+## Create table with constraints
+
+    create table #t1 (
+        id int,
+        curve_date date,
+        point_date date,
+        maturity int,
+        unique clustered (id, curve_date, point_date)
+    )
+    
+    insert into #t1 values (1, '20141014', dateadd(month, 1, '20141014'), 1)
+    insert into #t1 values (1, '20141014', dateadd(month, 2, '20141014'), 2)
+    insert into #t1 values (1, '20141014', dateadd(month, 3, '20141014'), 3)
+    insert into #t1 values (1, '20141013', dateadd(month, 3, '20141013'), 3)
+    
+    SELECT * FROM #t1
+    
+    -- will not update anything due to violation of constraint
+    update #t1 set
+        curve_date = dateadd(day, -1, curve_date),
+        point_date = dateadd(day, -1, point_date)
+        where curve_date = '20141014'
