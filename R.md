@@ -1,15 +1,6 @@
 Cheat sheet for the R language
 ==============================
 
-
-- Installing packages
-
-        install.packages('name of the package')
-
-- i modulo n (modulus operator)
-
-        i %% n
-
 Packages
 --------
 
@@ -63,3 +54,64 @@ Store a variable inside a package's environment:
     get.workdir <- function() {
       get('WORKDIR', envir=.AchiaEnv)
     }
+
+Scripting
+---------
+
+Use this first line for R scripts:
+
+    #!/usr/bin/env Rscript
+
+Ask for user input in Rscript:
+
+    cat('\n[Press Enter]\n')
+    foo <- scan("stdin", character(), n=1, nlines=1, quiet=TRUE)
+
+Getting help
+------------
+
+Get help about any R function or structure:
+
+    # documentation of the `rle` function
+    ?rle
+
+    # documentation of the `read.csv` function
+    ?read.csv
+
+Objects in memory
+-----------------
+
+    # list objects in memory
+    ls()
+
+    # delete objects from memory
+    rm('variablename')
+
+    # delete all objects
+    rm(list = ls())
+
+Navigating in the filesystem
+----------------------------
+
+    # current working directory
+    getwd()
+
+    # change to another directory
+    setwd('/path/to/somewhere/else')
+
+Extracting subsets from data frames
+-----------------------------------
+
+    # these are the same
+    subset(airquality, Month == 5)
+    subset(airquality, airquality[,'Month'] == 5)
+    subset(airquality, airquality[,5] == 5)
+
+Misc
+----
+
+Modulo operator:
+
+    # 5 mod 3 is 2
+    # 3 mod 5 is 3
+    i %% n
