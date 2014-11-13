@@ -73,7 +73,19 @@ To make the output more readable, replace all occurrences of `/n` with a line br
     SELECT * FROM #t1
     
     -- will not update anything due to violation of constraint
-    update #t1 set
-        curve_date = dateadd(day, -1, curve_date),
+    update #t1 setcurve_date = dateadd(day, -1, curve_date),
         point_date = dateadd(day, -1, point_date)
         where curve_date = '20141014'
+
+## Creating foreign keys
+
+    CREATE TABLE Employee (
+    	EmpId int PRIMARY KEY,
+    	Name varchar(20)
+    )
+    
+    CREATE TABLE Dept (
+    	DeptId int PRIMARY KEY,
+    	DeptName varchar(30),
+    	ManagerId int REFERENCES Employee(EmpId)
+    )
