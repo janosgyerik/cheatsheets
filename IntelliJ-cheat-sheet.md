@@ -27,10 +27,10 @@ Windows
 -------
 
     alt enter           intention actions
+    control shift a     find action by name
     control alt s       open settings
     control n           open class
     control shift n     open file / resource
-    control shift a     find action by name
     F2                  jump to next error
     control b           jump to declaration
     control tab         switch between open files (keep control down!)
@@ -55,10 +55,10 @@ Linux
 -----
 
     alt enter           intention actions
+    control shift a     find action by name
     control alt s       open settings
     control shift t     open class
     control shift r     open file / resource
-    control shift a     find action by name
     F2                  jump to next error
     F3                  jump to declaration
     control tab         switch between open files (keep control down!)
@@ -77,10 +77,10 @@ Mac OS X
 --------
 
     option enter        intention actions
+    cmd shift a         find action by name
     cmd ,               open settings
     cmd o               open class
     cmd shift o         open file (resource)
-    cmd shift a         find action by name
     F2                  jump to next error
     cmd b               jump to declaration
     control tab         switch between open files (keep control down!)
