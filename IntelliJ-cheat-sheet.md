@@ -31,7 +31,7 @@ Windows
     control alt s       open settings
     control n           open class
     control shift n     open file / resource
-    control h           open type hierarchy
+    control h           open type hierarchy : control Enter to open selected
     F2                  jump to next error
     control b           jump to declaration
     control tab         switch between open files (keep control down!)
@@ -49,8 +49,7 @@ Windows
     run last            shift F10
     control pageup      jump to top
     alt j               macro trigger key (see Macros section below)
-    control h           open type hierarchy : control Enter to open selected
-
+    control q           quick documentation
 
 Linux
 -----
@@ -60,7 +59,7 @@ Linux
     control alt s       open settings
     control shift t     open class
     control shift r     open file / resource
-    ??                  open type hierarchy
+    ?control h          open type hierarchy : control Enter to open selected
     F2                  jump to next error
     F3                  jump to declaration
     control tab         switch between open files (keep control down!)
@@ -71,8 +70,11 @@ Linux
     alt up              move line up
     control F4          close window
     shift delete        cut current line
-    control l           jump to line
+    ?control x		    	cut current line
+    ?control y    			delete current line
+    ?control l          jump to line
     control pageup      jump to top
+    ?control q          quick documentation
 
 
 Mac OS X
@@ -83,7 +85,7 @@ Mac OS X
     cmd ,               open settings
     cmd o               open class
     cmd shift o         open file (resource)
-    ??                  open type hierarchy
+    ?cmd h              open type hierarchy : control Enter to open selected
     F2                  jump to next error
     cmd b               jump to declaration
     control tab         switch between open files (keep control down!)
@@ -101,6 +103,7 @@ Mac OS X
     run last            shift F10
     cmd option l        reindent, reformat, organize
     cmd j               macro trigger key (see Macros section below)
+    ?control q          quick documentation
 
 Macros
 ------
