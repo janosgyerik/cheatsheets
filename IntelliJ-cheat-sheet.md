@@ -31,6 +31,7 @@ Windows
     control alt s       open settings
     control n           open class
     control shift n     open file / resource
+    control h           open type hierarchy
     F2                  jump to next error
     control b           jump to declaration
     control tab         switch between open files (keep control down!)
@@ -59,6 +60,7 @@ Linux
     control alt s       open settings
     control shift t     open class
     control shift r     open file / resource
+    ??                  open type hierarchy
     F2                  jump to next error
     F3                  jump to declaration
     control tab         switch between open files (keep control down!)
@@ -81,6 +83,7 @@ Mac OS X
     cmd ,               open settings
     cmd o               open class
     cmd shift o         open file (resource)
+    ??                  open type hierarchy
     F2                  jump to next error
     cmd b               jump to declaration
     control tab         switch between open files (keep control down!)
