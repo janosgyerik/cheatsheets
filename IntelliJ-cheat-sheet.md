@@ -104,6 +104,8 @@ Mac OS X
     cmd option l        reindent, reformat, organize
     cmd j               macro trigger key (see Macros section below)
     ?control q          quick documentation
+    cmd fn left         jump to top
+    cmd fn right        jump to bottom
 
 Macros
 ------
