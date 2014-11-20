@@ -50,6 +50,8 @@ Windows
     control pageup      jump to top
     alt j               macro trigger key (see Macros section below)
     control q           quick documentation
+    control home        jump to top
+    control end         jump to bottom
 
 Linux
 -----
@@ -75,6 +77,8 @@ Linux
     ?control l          jump to line
     control pageup      jump to top
     ?control q          quick documentation
+    control home        jump to top
+    control end         jump to bottom
 
 
 Mac OS X
