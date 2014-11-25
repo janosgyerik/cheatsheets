@@ -1,5 +1,6 @@
 Initial setup
 -------------
+
 - Download RCP version
 - Edit `eclipse.ini`
 
@@ -9,8 +10,18 @@ Initial setup
 
 Workspace setup
 --------------------
+
+- Add **Package Explorer** view
+    - Window | Show View | Other... | type "Package"
+    - Drag it to the left panel, drop the useless Project Explorer view
+- Setup **Package Explorer** view to use **Working Sets**
+    - Click on the small triangle near the top-right corner
+    - Select Top Level Elements | Working Sets
+- Add **Problems** view
+    - Window | Show View | Other... | type "Problems"
+    - Drag it to the leftmost tab in the bottom panel
 - Turn on line numbers
-  - Preferences | search: line
-  - General | Editors | Text Editors | Show line numbers
+    - Preferences | search: line
+    - General | Editors | Text Editors | Show line numbers
 - Make Maven show XML tab in POM editor by default
-  - Maven | User Interface
+    - Maven | User Interface
