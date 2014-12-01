@@ -2,17 +2,20 @@
 
 ```sql
 -- now, timestamp
-SELECT sysdate FROM dual
+SELECT SYSDATE FROM dual
 
 -- yesterday
-SELECT sysdate - 1 FROM dual
+SELECT SYSDATE - 1 FROM dual
 
 -- truncated date (without timestamp)
 SELECT TRUNC(SYSDATE) FROM dual
 
 -- extract date part
-SELECT sysdate, to_date(sysdate) FROM dual
+SELECT SYSDATE, TO_DATE(SYSDATE) FROM dual
 
 -- extract year from date
-SELECT extract(year from sysdate) FROM dual
+SELECT EXTRACT(YEAR FROM SYSDATE) FROM dual
+
+-- format string to date
+SELECT TO_DATE('2014-12-01', 'YYYY-MM-DD') FROM dual
 ```
