@@ -9,7 +9,7 @@ Initial setup
         -Xmx966m
 
 Workspace setup
---------------------
+---------------
 
 - Add **Package Explorer** view
     - Window | Show View | Other... | type "Package"
@@ -25,3 +25,11 @@ Workspace setup
     - General | Editors | Text Editors | Show line numbers
 - Make Maven show XML tab in POM editor by default
     - Maven | User Interface
+
+Keyboard shortcuts
+------------------
+
+    control 1           quick fix
+    F12                 focus to editor
+    alt /               complete text
+    control k           find next match of last search or highlighted text
