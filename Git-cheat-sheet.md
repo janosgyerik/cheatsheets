@@ -545,15 +545,15 @@ Assumes:
 
 ### Emoji
 
-* :clap:
-* :+1:
-* :-1:
-* :sparkles:
-* :shipit:
-* :heart:
-* :fire:
-* :rage2:
-* :shit:
+* `:clap:` :clap:
+* `:+1:` :+1:
+* `:-1:` :-1:
+* `:sparkles:` :sparkles:
+* `:shipit:` :shipit:
+* `:heart:` :heart:
+* `:fire:` :fire:
+* `:rage2:` :rage2:
+* `:shit:` :shit:
 
 ### GitHub
 
