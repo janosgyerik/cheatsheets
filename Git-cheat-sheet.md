@@ -516,48 +516,53 @@ git merge sha1
 git checkout master -- dirname
 </pre>
 
-## notes from Zach
+## Notes from Zach
 
 https://speakerdeck.com/holman/more-git-and-github-secrets
 
-<pre>
-# check for trailing whitespace and other things
-git diff --check
+        # check for trailing whitespace and other things
+        git diff --check
+        
+        # get the status of everything you're ignoring
+        git status --ignored
 
-# get the status of everything you're ignoring
-git status --ignored
+        curl https://github.com/janosgyerik.keys
 
-curl https://github.com/janosgyerik.keys
+        # fetch pull request #12 into a branch named pr
+        git fetch origin pull/12/head:pr
 
-# fetch pull request #12 into a branch named pr
-git fetch origin pull/12/head:pr
-</pre>
+### Commit messages
 
-* commit messages
-** should have a short summary, less than 50c
-** longer description, wrap lines at 72c
-** <code>git commit</code> (without <code>-m</code> flag), helps writing ''good'' messages
-*** assumes:
-**** EDITOR=vim
-**** syntax on
-**** filetype indent plugin on
-* emoji
-** :clap:
-** :+1:
-** :-1:
-** :sparkles:
-** :shipit:
-** :heart:
-** :fire:
-** :rage2:
-** :shit:
-* github
-** when commenting: highlight original text and press [r] to insert quoted text
-** issue autocompleting: type [#] to search
-** file finder: type [t] to find in project
-** task lists within issues: <code>- [] do this</code>
-** branch switcher: type [w]
-** quick search: type [s]
+* should have a short summary, less than 50c
+* longer description, wrap lines at 72c
+* <code>git commit</code> (without <code>-m</code> flag), helps writing ''good'' messages
+
+Assumes:
+
+        EDITOR=vim
+        syntax on
+        filetype indent plugin on
+
+### Emoji
+
+* :clap:
+* :+1:
+* :-1:
+* :sparkles:
+* :shipit:
+* :heart:
+* :fire:
+* :rage2:
+* :shit:
+
+### GitHub
+
+* when commenting: highlight original text and press [r] to insert quoted text
+* issue autocompleting: type [#] to search
+* file finder: type [t] to find in project
+* task lists within issues: <code>- [] do this</code>
+* branch switcher: type [w]
+* quick search: type [s]
 
 ## Links
 
