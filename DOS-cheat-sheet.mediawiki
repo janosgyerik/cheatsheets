@@ -58,7 +58,7 @@ If you want to use UNIX commands in DOS, get coreutils!
 * title - set the title of a cmd window
 * color - set the colors of a cmd window
 * tasklist /FI "IMAGENAME eq yourprocname*"
-* `net use` - find what a network drive is mapped to
+* `net use` - find what a network drive is mapped to (find UNC path of a drive letter)
 
 == Enable filename completion in Windows 2000 ==
 
