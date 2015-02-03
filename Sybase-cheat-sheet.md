@@ -17,10 +17,10 @@
 
     sp_help TABLENAME
 
-    SELECT syscolumns.name, syscolumns.* 
-    FROM syscolumns JOIN sysobjects
-           ON syscolumns.id=sysobjects.id
-    WHERE sysobjects.name='TABLENAME'
+    SELECT sc.* 
+    FROM syscolumns sc
+    	INNER JOIN sysobjects so ON sc.id = so.id
+    WHERE so.name = 'your_table_name'
 
 ## Get the definition of a stored procedure
 
