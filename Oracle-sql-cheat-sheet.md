@@ -17,3 +17,8 @@
     
     -- format string to date
     SELECT TO_DATE('2014-12-01', 'YYYY-MM-DD') FROM dual
+
+### Misc
+
+    -- select top 10 rows
+    SELECT * FROM dual WHERE ROWNUM < 10
