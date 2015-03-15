@@ -29,6 +29,11 @@ Set username and email that will be recorded in commits:
 
     git config --global user.name "Your Name"
     git config --global user.email you@your.domain.com
+    
+Set username and email for particular repo instead of global config
+    
+    git config user.name "Your Other Name"
+    git config user.email "you@your.other.domain.com"
  
 Convert any directory to a Git repository:
 
@@ -442,10 +447,12 @@ After this you can do <code>git push</code> with no args to push to that locatio
 ## Rename branch
 
     git branch -m old_branch new_branch
-
-## Delete remote branches
+    git branch -M old_branch new_branch # rename branch even if the new_branch exists
+    
+## Delete remote branches and tags
 
     git push origin :BRANCHNAME
+    git push origin :refs/tags/TAGNAME
 
 For example:
 
@@ -542,6 +549,29 @@ Assumes:
         EDITOR=vim
         syntax on
         filetype indent plugin on
+        
+### Current branch
+
+        git rev-parse --abbrev-ref HEAD
+        git symbolic-ref --short HEAD #probably works for 1.8 and newer clients only
+        
+### Author Information
+
+        git --no-pager show -s --format='%ae' COMMIT_HASH #get author e-mail
+        git --no-pager show -s --format='%an <%ae>' COMMIT_HASH #get author name and e-mail in user <email> format
+        
+### Git-Blame-Dir
+
+```bash
+#!/bin/bash
+
+format='%Cblue%h%Creset %s%x09%ar'
+git ls-tree --name-only -z HEAD |
+while IFS= read -d '' file; do
+git log -1 --pretty="$file"$'\t'"$format" -- "$file"
+done |
+column -t -s $'\t'
+```
 
 ### Emoji
 
@@ -563,6 +593,7 @@ Assumes:
 * task lists within issues: <code>- [] do this</code>
 * branch switcher: type [w]
 * quick search: type [s]
+* highlight specific line(s): Append #Ln or #Ln1-n2 eg: #L5 or #L10-18
 
 ## Links
 
