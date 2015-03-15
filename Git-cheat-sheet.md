@@ -447,10 +447,12 @@ After this you can do <code>git push</code> with no args to push to that locatio
 ## Rename branch
 
     git branch -m old_branch new_branch
-
-## Delete remote branches
+    git branch -M old_branch new_branch # rename branch even if the new_branch exists
+    
+## Delete remote branches and tags
 
     git push origin :BRANCHNAME
+    git push origin :refs/tags/TAGNAME
 
 For example:
 
