@@ -116,8 +116,8 @@ Turn it off with:
 
 == bash hackers ==
 
-* http://www.linkedin.com/share?viewLink=&sid=s724836052&url=http%3A%2F%2Flnkd%2Ein%2FWk8zpY&urlhash=olZL&uid=5546626564143185920&trk=EML_nus_share-* http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
-F21&ut=3DWP-BEKD3oB01
+* http://www.linkedin.com/share?viewLink=&sid=s724836052&url=http%3A%2F%2Flnkd%2Ein%2FWk8zpY&urlhash=olZL&uid=5546626564143185920&trk=EML_nus_share-
+* http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
 * http://danielmiessler.com/study/lsof/
 * http://www.reddit.com/user/Theon
 * http://wiki.bash-hackers.org/
