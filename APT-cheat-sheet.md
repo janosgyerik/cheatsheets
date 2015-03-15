@@ -106,6 +106,10 @@ Example commands:
     
     apt-cache rdepends pkgname
 
+Speeding up apt-get install:
+
+  [apt-fast](https://github.com/ilikenwf/apt-fast) is a shell wrapper around apt-get (and aptitude) and utilizes aria2 to speed-up apt-get installs. You can use PPA for ubuntu and/or install manually by referring to [README](https://github.com/ilikenwf/apt-fast/blob/master/README.md).
+
 Resources
 ---------
 
