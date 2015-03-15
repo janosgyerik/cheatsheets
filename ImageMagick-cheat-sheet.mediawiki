@@ -1,4 +1,11 @@
 * Make a PNG 50% transparent
  convert input.png -channel Alpha -evaluate Divide 2 output.png
 
-
+* Image to PDF
+ convert image.jpg image.pdf # single image to pdf
+ convert 1.jpg 2.jpg 3.jpg output.pdf # multiple images to pdf
+ convert -resize 80% image.jpg image.pdf # resize and convert to pdf
+ 
+* Remove exif
+ mogrify -strip image.jpg
+ 
