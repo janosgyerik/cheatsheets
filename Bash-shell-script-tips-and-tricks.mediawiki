@@ -54,6 +54,21 @@ Turn it off with:
  "\e[5D": backward-word
  "\e\e[C": forward-word
  "\e\e[D": backward-word
+ 
+== Bash 4 case conversion ==
+
+ $ x="samar"
+ $ echo "${x^}"
+ Samar
+ $ echo "${x^^}"
+ SAMAR
+ $ y="${x^^}"
+ $ echo $y
+ SAMAR
+ $ echo "${y,}"
+ sAMAR
+ $ echo "${y,,}"
+ samar
 
 == Other, random ==
 
@@ -68,7 +83,8 @@ Turn it off with:
 * sudo !! - repeats last command with sudo prepended
 * fmt - simple optimal text formatter
 * pgrep/pkill - even had an alias to do the same before I knew about it
-* python -m SimpleHTTPServer 8080
+* python -m SimpleHTTPServer [8080] # serves current directory via simple http server (python2). port is optional; defaults to 8000
+* python3 -m http.server [8080] # for python3, port is optional; defaults to 8000
 * xxd
 * pstree
 * ddate
@@ -85,12 +101,27 @@ Turn it off with:
  bind '"\e[A": history-search-backward'
  bind '"\e[B": history-search-forward'
 
+== Base Conversions with bc ==
+
+ echo "ibase=2;1101101" | bc # binary to decimal
+ 109
+ echo "ibase=8;1101101" | bc # octal to decimal
+ 295489
+ echo "ibase=16;A1F3DF" | bc # hexadecimal to decimal
+ 10613727
+ echo "obase=2;109" | bc # decimal to binary
+ 1101101
+ echo "ibase=16;obase=2;AFBE" | bc # hexadecimal to binary
+ 1010111110111110
+ 
 == bash hackers ==
 
 * http://www.linkedin.com/share?viewLink=&sid=s724836052&url=http%3A%2F%2Flnkd%2Ein%2FWk8zpY&urlhash=olZL&uid=5546626564143185920&trk=EML_nus_share-* http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
 F21&ut=3DWP-BEKD3oB01
 * http://danielmiessler.com/study/lsof/
 * http://www.reddit.com/user/Theon
+* http://wiki.bash-hackers.org/
+* http://www.bash.academy/
 
 
 
