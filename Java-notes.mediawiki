@@ -49,4 +49,21 @@ java -Xms64m -Xmx256m -XX:MaxPermSize=128m HelloWorld
 
  URL resource = getClass().getClassLoader().getResource("org/objectweb/asm/ClassWriter.class");
 
+== Correct order of modifiers ==
 
+- `public`
+- `protected`
+- `private`
+- `abstract`
+- `static`
+- `final`
+- `transient`
+- `volatile`
+- `synchronized`
+- `native`
+- `strictfp`
+
+See also:
+
+- http://checkstyle.sourceforge.net/config_modifier.html
+- http://docs.oracle.com/javase/specs/ sections 8.1.1, 8.3.1, 8.4.3
