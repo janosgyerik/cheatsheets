@@ -1,4 +1,4 @@
-### Date related
+### Working with dates
 
     -- now, timestamp
     SELECT SYSDATE FROM dual
@@ -17,6 +17,14 @@
     
     -- format string to date
     SELECT TO_DATE('2014-12-01', 'YYYY-MM-DD') FROM dual
+    
+### Working with numbers
+
+    -- rounds to 1.23
+    SELECT ROUND(1.234, 2) FROM DUAL
+
+    -- rounds to 1.2
+    SELECT ROUND(1.234, 1) FROM DUAL
 
 ### Misc
 
