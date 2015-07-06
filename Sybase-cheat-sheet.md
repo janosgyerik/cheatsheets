@@ -43,6 +43,17 @@ To make the output more readable, replace all occurrences of `/n` with a line br
     SELECT dateadd(day, -1, getdate())
     -- last month
     SELECT dateadd(month, -1, getdate())
+    
+## Rounding numbers
+
+    -- gives 123.456
+    SELECT ROUND(123.456, 3) 
+    
+    -- gives 123.46
+    SELECT ROUND(123.456, 2) 
+    
+    -- gives 123.5
+    SELECT ROUND(123.456, 1) 
 
 ## Converting between types, casting
 
