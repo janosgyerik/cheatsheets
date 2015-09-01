@@ -521,6 +521,16 @@ git merge sha1
 
 # get directory from another branch
 git checkout master -- dirname
+
+# list files in a branch/commit
+# http://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch
+git ls-tree -r --name-only ref
+
+# get specific file from other branch
+git checkout branch -- path
+
+# view list of files changed between two commits
+git diff --name-only ref1 ref2
 </pre>
 
 ## Notes from Zach
