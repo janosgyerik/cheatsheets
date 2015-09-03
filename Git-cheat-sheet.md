@@ -531,6 +531,13 @@ git checkout branch -- path
 
 # view list of files changed between two commits
 git diff --name-only ref1 ref2
+
+# diff between one ref to another
+git diff ref1 ref2
+git diff ref1..ref2
+
+# diff *going from* one ref to another
+git diff ref1...ref2
 </pre>
 
 ## Notes from Zach
