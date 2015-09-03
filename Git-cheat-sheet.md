@@ -532,11 +532,12 @@ git checkout branch -- path
 # view list of files changed between two commits
 git diff --name-only ref1 ref2
 
-# diff between one ref to another
+# diff between ref1 to ref2. The direction is crucial
 git diff ref1 ref2
 git diff ref1..ref2
 
-# diff *going from* one ref to another
+# diff *going from* ref2 to ref1. Yes, in that order. Crucial! 
+# In other words, changes in ref2 that should be merged into ref1
 git diff ref1...ref2
 </pre>
 
