@@ -558,6 +558,19 @@ git fsck --lost-found
 # multi-remote fetches
 git config remotes.mygroup 'remote1 remote2'
 git fetch mygroup
+
+# give me master but my final state should match my current branch
+git merge master -s ours
+
+# better line matching
+git merge master -s recursive -X patience
+
+# strip trailing whitespace, collapse newlines, add final newline
+git stripspace < file
+
+# good commit messages:
+# short summary < 50c
+# longer explanation -- wrap at 72c
 </pre>
 
 ## Notes from Zach
