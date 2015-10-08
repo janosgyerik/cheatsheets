@@ -556,6 +556,19 @@ https://speakerdeck.com/holman/more-git-and-github-secrets
         # fetch pull request #12 into a branch named pr
         git fetch origin pull/12/head:pr
 
+### `hub`
+
+        # install with mac ports
+        sudo port install hub
+        
+        # clone github repos
+        hub clone janosgyerik/cheetsheets
+        
+        # easy multi-remote push
+        hub push origin,staging
+        
+        # see more at https://speakerdeck.com/holman/git-and-github-secrets
+
 ### Commit messages
 
 * should have a short summary, less than 50c
@@ -616,4 +629,4 @@ column -t -s $'\t'
 ## Links
 
 * http://cheat.errtheblog.com/s/git
-
+* https://speakerdeck.com/holman/git-and-github-secrets
