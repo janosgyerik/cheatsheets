@@ -539,6 +539,25 @@ git diff ref1..ref2
 # diff *going from* ref2 to ref1. Yes, in that order. Crucial! 
 # In other words, changes in ref2 that should be merged into ref1
 git diff ref1...ref2
+
+# show the last commit with message matching 'stupid'
+git show :/stupid
+
+# checkout previous branch
+git checkout -
+
+# list branches that contain commit
+git branch --contains c68c3a0
+
+# commits in A that aren't in B
+git log branchA ^branchB
+
+# lost commits
+git fsck --lost-found
+
+# multi-remote fetches
+git config remotes.mygroup 'remote1 remote2'
+git fetch mygroup
 </pre>
 
 ## Notes from Zach
