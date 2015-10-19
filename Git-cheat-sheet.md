@@ -152,24 +152,22 @@ Scenario: same as earlier, but this time use local Git branches
 
 ## Working on a Subversion branch
 
-<pre>
-# add the url of the branch, and give it a "refname"
-git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
-git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
+    # add the url of the branch, and give it a "refname"
+    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
+    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
 
-# fetch the branch
-git svn fetch newbranchname [-r<rev>]
+    # fetch the branch
+    git svn fetch newbranchname [-r<rev>]
 
-# create a local branch from the remote reference
-git checkout -b local-newbranchname -t newbranchname
+    # create a local branch from the remote reference
+    git checkout -b local-newbranchname -t newbranchname
 
-# update the local branch from the remote reference
-git svn rebase newbranchname
+    # update the local branch from the remote reference
+    git svn rebase newbranchname
 
-# push the new revisions to subversion
-git svn dcommit --dry-run
-git svn dcommit
-</pre>
+    # push the new revisions to subversion
+    git svn dcommit --dry-run
+    git svn dcommit
 
 ## Restoring a deleted directory from an old revision
 
@@ -198,27 +196,25 @@ and add it to the staging area. If you want to unstage:
 
 ## How to push a git repo to svn for the first time
 
-1. Create the target location inside the Subversion repository
+Create the target location inside the Subversion repository:
 
     svn mkdir https://reposerver/path/to/repo/path/to/project
 
-2. Edit your git repository configuration to make the connection with git-svn
+Edit your git repository configuration to make the connection with git-svn:
 
-<pre>
-[svn-remote "svn"]
-  url = https://reposerver/path/to/repo/path/to/project
-  fetch = :refs/remotes/git-svn
-</pre>
+    [svn-remote "svn"]
+      url = https://reposerver/path/to/repo/path/to/project
+      fetch = :refs/remotes/git-svn
 
-3. Import the empty Subversion history
+Import the empty Subversion history:
 
     git svn fetch
 
-4. Replay your commits on top of the empty Subversion history
+Replay your commits on top of the empty Subversion history:
 
     git rebase remotes/git-svn
 
-5. Push the commits to Subversion
+Push the commits to Subversion:
 
     git svn dcommit
 
