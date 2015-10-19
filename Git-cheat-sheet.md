@@ -2,26 +2,25 @@
 
 http://git-scm.com/course/svn.html
 
-- Print the content of a file at some revision or branch:
+Print the content of a file at some revision or branch:
 
-        svn cat path/to/file -r REV
-        git show REV:path/to/file
+    svn cat path/to/file -r REV
+    git show REV:path/to/file
 
-- Print the diff of a revision:
+Print the diff of a revision:
 
-        svn diff -cREV
-        git show REV
+    svn diff -cREV
+    git show REV
 
-- Export a project subdirectory:
+Export a project subdirectory:
 
-        svn export PATH /path/to/dir
-        git archive master > /path/to/export.tar
+    svn export PATH /path/to/dir
+    git archive master > /path/to/export.tar
 
-- Remove file from version control but keep it in the working directory:
+Remove file from version control but keep it in the working directory:
 
-        svn rm --keep-local PATH
-        git rm --cached PATH
-
+    svn rm --keep-local PATH
+    git rm --cached PATH
 
 ## Getting started
 
