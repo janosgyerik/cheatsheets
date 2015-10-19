@@ -188,17 +188,13 @@ and add it to the staging area. If you want to unstage:
 
 ## How to start a local repository and push it to a server later
 
-<pre>
-cd /path/to/your/new/project
-git init
-git add .
-git commit -m 'first commit, added all files'
-git clone --bare . project.git
-rsync -a project.git username@server:path/to/repos/git/project.git
-rm -fr project.git
-git remote add origin username@server:path/to/repos/git/project.git
-git pull origin master  # should say: "Already up-to-date."
-</pre>
+    cd /path/to/your/new/project
+    git init
+    git add .
+    git commit -m 'first commit, added all files'
+    ssh username@server git init --bare path/to/repos/git/project.git
+    git remote add origin username@server:path/to/repos/git/project.git
+    git push origin master
 
 ## How to push a git repo to svn for the first time
 
