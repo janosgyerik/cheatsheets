@@ -498,6 +498,19 @@ git format-patch REV
 git format-patch HEAD^
 </pre>
 
+## Caching credentials for HTTPS remotes
+
+As of Git 1.7, *wincred* is included by default,
+and it can cache your credentials so you don't need to enter repeatedly.
+
+To activate:
+
+    git config --global credential.helper wincred
+
+To adjust the expiration time:
+
+    git config credential.helper 'cache --timeout=3600'
+
 ## random memo
 
 <pre>
