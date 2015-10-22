@@ -37,12 +37,17 @@ SHOW INDEX FROM tname;
 
 Managing users
 --------------
+
 ```sql
 -- Create user identified by some password
 GRANT ALL PRIVILEGES ON dbname.* TO 'dbuser'@localhost IDENTIFIED BY 'userpass';
 
 -- Create database with some encoding
 CREATE DATABASE bugtracker DEFAULT CHARACTER SET utf8;  
+
+-- Create a superuser
+CREATE USER username@'%' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON *.* TO username@'%' WITH GRANT OPTION;
 ```
 
 
