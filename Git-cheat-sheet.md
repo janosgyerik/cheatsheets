@@ -434,37 +434,33 @@ After this you can do `git push` with no args to push to that location.
 
 For example:
 
-<pre>
-$ git branch -r
-  origin/HEAD -> origin/master
-  origin/master
-  origin/blah
-$ git push origin :blah
-To git@github.com:user/repo
- - [deleted]         blah
-</pre>
+    $ git branch -r
+      origin/HEAD -> origin/master
+      origin/master
+      origin/blah
+    $ git push origin :blah
+    To git@github.com:user/repo
+     - [deleted]         blah
 
 ## Remotes
 
-<pre>
-# show all remotes
-git remote -v
+    # show all remotes
+    git remote -v
 
-# show all remote branches
-git branch -r
+    # show all remote branches
+    git branch -r
 
-# add a new remote
-git remote add sample /path/to/remote
+    # add a new remote
+    git remote add sample /path/to/remote
 
-# fetch all branches from remotes and update branch listing
-git remote update
+    # fetch all branches from remotes and update branch listing
+    git remote update
 
-# checkout a remote branch
-git checkout -b feature1 sample/feature1
+    # checkout a remote branch
+    git checkout -b feature1 sample/feature1
 
-# easy way to check out and switch to a branch from a remote
-git checkout feature1
-</pre>
+    # easy way to check out and switch to a branch from a remote
+    git checkout feature1
 
 ## Create a patch from pending changes
 
@@ -477,13 +473,11 @@ The commit log message will be used in the filename of the patch file, with spac
 
 ## Create a patch from a commit
 
-<pre>
-# Create a patch from any revision
-git format-patch REV
+    # Create a patch from any revision
+    git format-patch REV
 
-# Create a patch from the last revision
-git format-patch HEAD^
-</pre>
+    # Create a patch from the last revision
+    git format-patch HEAD^
 
 ## Caching credentials for HTTPS remotes
 
@@ -500,97 +494,95 @@ To adjust the expiration time:
 
 ## random memo
 
-<pre>
-# show last 5 revision numbers
-git rev-list master -n 5
+    # show last 5 revision numbers
+    git rev-list master -n 5
 
-# show last 5 revision numbers + online commit message
-git rev-list master -n 5 --oneline
+    # show last 5 revision numbers + online commit message
+    git rev-list master -n 5 --oneline
 
-# merge up to specific revision
-git merge sha1
+    # merge up to specific revision
+    git merge sha1
 
-# get directory from another branch
-git checkout master -- dirname
+    # get directory from another branch
+    git checkout master -- dirname
 
-# list files in a branch/commit
-# http://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch
-git ls-tree -r --name-only ref
+    # list files in a branch/commit
+    # http://stackoverflow.com/questions/1910783/git-1-list-all-files-in-a-branch-2-compare-files-from-different-branch
+    git ls-tree -r --name-only ref
 
-# get specific file from other branch
-git checkout branch -- path
+    # get specific file from other branch
+    git checkout branch -- path
 
-# view list of files changed between two commits
-git diff --name-only ref1 ref2
+    # view list of files changed between two commits
+    git diff --name-only ref1 ref2
 
-# diff between ref1 to ref2. The direction is crucial
-git diff ref1 ref2
-git diff ref1..ref2
+    # diff between ref1 to ref2. The direction is crucial
+    git diff ref1 ref2
+    git diff ref1..ref2
 
-# diff *going from* ref2 to ref1. Yes, in that order. Crucial! 
-# In other words, changes in ref2 that should be merged into ref1
-git diff ref1...ref2
+    # diff *going from* ref2 to ref1. Yes, in that order. Crucial! 
+    # In other words, changes in ref2 that should be merged into ref1
+    git diff ref1...ref2
 
-# show the last commit with message matching 'stupid'
-git show :/stupid
+    # show the last commit with message matching 'stupid'
+    git show :/stupid
 
-# checkout previous branch
-git checkout -
+    # checkout previous branch
+    git checkout -
 
-# list branches that contain commit
-git branch --contains c68c3a0
+    # list branches that contain commit
+    git branch --contains c68c3a0
 
-# commits in A that aren't in B
-git log branchA ^branchB
+    # commits in A that aren't in B
+    git log branchA ^branchB
 
-# lost commits
-git fsck --lost-found
+    # lost commits
+    git fsck --lost-found
 
-# multi-remote fetches
-git config remotes.mygroup 'remote1 remote2'
-git fetch mygroup
+    # multi-remote fetches
+    git config remotes.mygroup 'remote1 remote2'
+    git fetch mygroup
 
-# give me master but my final state should match my current branch
-git merge master -s ours
+    # give me master but my final state should match my current branch
+    git merge master -s ours
 
-# better line matching
-git merge master -s recursive -X patience
+    # better line matching
+    git merge master -s recursive -X patience
 
-# strip trailing whitespace, collapse newlines, add final newline
-git stripspace < file
+    # strip trailing whitespace, collapse newlines, add final newline
+    git stripspace < file
 
-# good commit messages:
-# short summary < 50c
-# longer explanation -- wrap at 72c
-</pre>
+    # good commit messages:
+    # short summary < 50c
+    # longer explanation -- wrap at 72c
 
 ## Notes from Zach
 
 https://speakerdeck.com/holman/more-git-and-github-secrets
 
-        # check for trailing whitespace and other things
-        git diff --check
-        
-        # get the status of everything you're ignoring
-        git status --ignored
+    # check for trailing whitespace and other things
+    git diff --check
+    
+    # get the status of everything you're ignoring
+    git status --ignored
 
-        curl https://github.com/janosgyerik.keys
+    curl https://github.com/janosgyerik.keys
 
-        # fetch pull request #12 into a branch named pr
-        git fetch origin pull/12/head:pr
+    # fetch pull request #12 into a branch named pr
+    git fetch origin pull/12/head:pr
 
 ### `hub`
 
-        # install with mac ports
-        sudo port install hub
-        
-        # clone github repos
-        hub clone janosgyerik/cheetsheets
-        
-        # easy multi-remote push
-        hub push origin,staging
-        
-        # see more at https://speakerdeck.com/holman/git-and-github-secrets
+    # install with mac ports
+    sudo port install hub
+    
+    # clone github repos
+    hub clone janosgyerik/cheetsheets
+    
+    # easy multi-remote push
+    hub push origin,staging
+    
+    # see more at https://speakerdeck.com/holman/git-and-github-secrets
 
 ### Commit messages
 
