@@ -266,13 +266,12 @@ Merge from another git repository:
     git pull path_to_dir
 
 Track specific branches of a subversion repository:
-<pre>
-[svn-remote "huge-project"]
-        url = http://server.org/svn
-        fetch = trunk/src:refs/remotes/trunk
-        branches = branches/{red,green}/src:refs/remotes/branches/*
-        tags = tags/{1.0,2.0}/src:refs/remotes/tags/*
-</pre>
+
+    [svn-remote "huge-project"]
+            url = http://server.org/svn
+            fetch = trunk/src:refs/remotes/trunk
+            branches = branches/{red,green}/src:refs/remotes/branches/*
+            tags = tags/{1.0,2.0}/src:refs/remotes/tags/*
 
 Generate <tt>.gitignore</tt> in a checkout from subversion:
 
@@ -293,64 +292,54 @@ Two equivalent methods to merge from a branch:
 
 ## Other
 
-<pre>
-# staging hunks
-git add --patch
-git merge --squash <feature_branch>
+    # staging hunks
+    git add --patch
+    git merge --squash <feature_branch>
 
-git ls-tree -r $BRANCH
+    git ls-tree -r $BRANCH
 
-git show $REVISION:$FILENAME
-git checkout $REVISION -- $FILENAME
+    git show $REVISION:$FILENAME
+    git checkout $REVISION -- $FILENAME
 
-git checkout $BRANCH@{yesterday}:$FILENAME # $FILENAME as it was yesterday 
-git checkout $BRANCH^:$FILENAME            # $FILENAME on the first commit parent
-git checkout $BRANCH@{2}:$FILENAME         # $FILENAME two commits ago
-</pre>
+    git checkout $BRANCH@{yesterday}:$FILENAME # $FILENAME as it was yesterday 
+    git checkout $BRANCH^:$FILENAME            # $FILENAME on the first commit parent
+    git checkout $BRANCH@{2}:$FILENAME         # $FILENAME two commits ago
 
 ## Switch to Subversion branch and do some work there
 
-<pre>
-git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
-git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
-git svn fetch newbranchname [-r<rev>]
-git checkout -b local-newbranchname -t newbranchname
-git svn rebase newbranchname
-...
-git svn dcommit --dry-run
-git svn dcommit
-</pre>
+    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
+    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
+    git svn fetch newbranchname [-r<rev>]
+    git checkout -b local-newbranchname -t newbranchname
+    git svn rebase newbranchname
+    ...
+    git svn dcommit --dry-run
+    git svn dcommit
 
 ## Resolve conflicts
 
 http://www.kernel.org/pub/software/scm/git/docs/v1.7.3/user-manual.html#resolving-a-merge
 
-<pre>
-git status
-git checkout --theirs path
-git checkout --ours path
-git commit -a
-</pre>
+    git status
+    git checkout --theirs path
+    git checkout --ours path
+    git commit -a
 
 ## Cherry picking
 
 Cherry-pick merge revisions in other branch that are not in master.
 
-<pre>
-git reset --hard
-git cherry-pick --abort
-git rev-list ^master other-branch | git cherry-pick -n --stdin
-</pre>
+    git reset --hard
+    git cherry-pick --abort
+    git rev-list ^master other-branch | git cherry-pick -n --stdin
 
 ## Doing on the daily
 
 ### Commit temporary changes to a separate branch
 
-<pre>
-git checkout -b some-name-describing-the-change
-git commit -m 'describe the change' file1 file2
-git checkout master
-</pre>
+    git checkout -b some-name-describing-the-change
+    git commit -m 'describe the change' file1 file2
+    git checkout master
 
 ## gitk
 
@@ -392,31 +381,31 @@ https://speakerdeck.com/u/holman/p/git-and-github-secrets
 
     delete-unused-branches = "!f() { git branch | xargs git branch -d; }; f"
 
-<pre>
-# blame ignore whitespace
-git blame -w
+### misc
 
-# detect moves
-git blame -M
+    # blame ignore whitespace
+    git blame -w
 
-# detect moves over files, like -M but at other files in that same commit
-git blame -C
+    # detect moves
+    git blame -M
 
-# also looks at the commit the file was created in
-git blame -CC
+    # detect moves over files, like -M but at other files in that same commit
+    git blame -C
 
-# also looks at all commits
-git blame -CCC
+    # also looks at the commit the file was created in
+    git blame -CC
 
-# word diffs
-git diff HEAD^ --word-diff
+    # also looks at all commits
+    git blame -CCC
 
-# fix typos like git comit
-git config --global help.autocorrect 1
+    # word diffs
+    git diff HEAD^ --word-diff
 
-# short log with count grouped by author
-git shortlog -sn
-</pre>
+    # fix typos like git comit
+    git config --global help.autocorrect 1
+
+    # short log with count grouped by author
+    git shortlog -sn
 
 ## View differences with a diff tool
 
@@ -428,12 +417,10 @@ git shortlog -sn
 
 ## How to push the current branch somewhere else and track it
 
-<pre>
-git init --bare /path/to/somewhere/else
-git push -u /path/to/somewhere/else master
-</pre>
+    git init --bare /path/to/somewhere/else
+    git push -u /path/to/somewhere/else master
 
-After this you can do <code>git push</code> with no args to push to that location.
+After this you can do `git push` with no args to push to that location.
 
 ## Rename branch
 
