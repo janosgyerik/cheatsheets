@@ -253,6 +253,8 @@ List files that are marked 'assume unchanged' in the index:
 
     git ls-files -v | grep ^[a-z]
 
+For more details, see this post: http://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/23806990#23806990
+
 Run this once in a while:
 
     git gc
