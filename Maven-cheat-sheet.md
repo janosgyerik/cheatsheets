@@ -17,6 +17,10 @@ the `dependency` plugin keeps its own cache in `target` of the project,
 in directories named `dependency-maven-plugin-markers`.
 An easy way to clear these markers is `mvn clean`.
 
+To download the javadoc:
+
+    mvn dependency:resolve -Dclassifier=javadoc
+
 For more details see the [docs](https://maven.apache.org/plugins/maven-dependency-plugin/sources-mojo.html).
 
 ## Misc
