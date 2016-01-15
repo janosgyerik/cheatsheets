@@ -1,3 +1,26 @@
+## Downloading sources
+
+Download all sources of all dependencies:
+
+    mvn dependency:sources
+
+Download sources only of artifacts with id `abc`:
+
+    mvn dependency:sources -DincludeArtifactIds=abc
+
+Download sources only of artifacts with group id `abc`:
+
+    mvn dependency:sources -DincludeGroupIds=abc
+    
+Note: in addition to saving the sources in the local repository,
+the `dependency` plugin keeps its own cache in `target` of the project,
+in directories named `dependency-maven-plugin-markers`.
+An easy way to clear these markers is `mvn clean`.
+
+For more details see the [docs](https://maven.apache.org/plugins/maven-dependency-plugin/sources-mojo.html).
+
+## Misc
+
 Skip tests during the install step:
 
     mvn install -Dmaven.test.skip=true
@@ -30,3 +53,4 @@ Print list of dependencies:
 Print tree of dependencies:
 
     mvn dependency:tree
+
