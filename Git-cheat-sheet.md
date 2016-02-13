@@ -1,26 +1,4 @@
-## Migrating from Subversion
-
-http://git-scm.com/course/svn.html
-
-Print the content of a file at some revision or branch:
-
-    svn cat path/to/file -r REV
-    git show REV:path/to/file
-
-Print the diff of a revision:
-
-    svn diff -cREV
-    git show REV
-
-Export a project subdirectory:
-
-    svn export PATH /path/to/dir
-    git archive master > /path/to/export.tar
-
-Remove file from version control but keep it in the working directory:
-
-    svn rm --keep-local PATH
-    git rm --cached PATH
+# Git cheat sheet
 
 ## Getting started
 
@@ -103,72 +81,6 @@ instead of uppercase `HEAD` you can get away with lowercase `head` too.
 
     git log --grep keyword
 
-## Working with a Subversion repository in lock-step with upstream
-
-Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
-
-    # this will create new local git repo in new dir "projname"
-    git svn clone svn://path/to/repo/projname
-    # note: this can take a long time
-    # note: this can hang in the middle. When that happens,
-    # cd into the partial clone, and run `git svn fetch`.
-    # That too may hang, just keep repeating `git svn fetch` until success.
- 
-    # commit changes to local repo
-    git commit -m "some work"
-    git commit -m "some more work"
-    git commit -m "even more work"
- 
-    # get changes from svn, and rebase local work on top of it
-    git svn rebase
- 
-    # push local changes back to svn, as multiple individual commits
-    git svn dcommit
-
-## Working with a Subversion repository and local Git branches
-
-Scenario: same as earlier, but this time use local Git branches
-
-    # create local 'work' branch and switch to it
-    git checkout -b work
- 
-    # work work work...
-    git commit -m "some work"
-    git commit -m "some more work"
-    git commit -m "even more work"
-
-    # switch back to master and get upstream changes from svn
-    git checkout master
-    git svn rebase
- 
-    # switch to work, rebase on top of master
-    git checkout work
-    git rebase master
-
-    # switch back to master, merge from work, and push back to svn
-    git checkout master
-    git merge work
-    git svn dcommit
-
-## Working on a Subversion branch
-
-    # add the url of the branch, and give it a "refname"
-    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
-    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
-
-    # fetch the branch
-    git svn fetch newbranchname [-r<rev>]
-
-    # create a local branch from the remote reference
-    git checkout -b local-newbranchname -t newbranchname
-
-    # update the local branch from the remote reference
-    git svn rebase newbranchname
-
-    # push the new revisions to subversion
-    git svn dcommit --dry-run
-    git svn dcommit
-
 ## Restoring a deleted directory from an old revision
 
 If you know the path you want to restore, find the SHA where it was deleted:
@@ -193,30 +105,6 @@ and add it to the staging area. If you want to unstage:
     ssh username@server git init --bare path/to/repos/git/project.git
     git remote add origin username@server:path/to/repos/git/project.git
     git push origin master
-
-## How to push a git repo to svn for the first time
-
-Create the target location inside the Subversion repository:
-
-    svn mkdir https://reposerver/path/to/repo/path/to/project
-
-Edit your git repository configuration to make the connection with git-svn:
-
-    [svn-remote "svn"]
-      url = https://reposerver/path/to/repo/path/to/project
-      fetch = :refs/remotes/git-svn
-
-Import the empty Subversion history:
-
-    git svn fetch
-
-Replay your commits on top of the empty Subversion history:
-
-    git rebase remotes/git-svn
-
-Push the commits to Subversion:
-
-    git svn dcommit
 
 ## Removing untracked files
 
@@ -267,18 +155,6 @@ Merge from another git repository:
 
     git pull path_to_dir
 
-Track specific branches of a subversion repository:
-
-    [svn-remote "huge-project"]
-            url = http://server.org/svn
-            fetch = trunk/src:refs/remotes/trunk
-            branches = branches/{red,green}/src:refs/remotes/branches/*
-            tags = tags/{1.0,2.0}/src:refs/remotes/tags/*
-
-Generate <tt>.gitignore</tt> in a checkout from subversion:
-
-    git-svn show-ignore > .gitignore
-
 Fetch revisions from a remote branch:
 
     git fetch some_name
@@ -306,17 +182,6 @@ Two equivalent methods to merge from a branch:
     git checkout $BRANCH@{yesterday}:$FILENAME # $FILENAME as it was yesterday 
     git checkout $BRANCH^:$FILENAME            # $FILENAME on the first commit parent
     git checkout $BRANCH@{2}:$FILENAME         # $FILENAME two commits ago
-
-## Switch to Subversion branch and do some work there
-
-    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
-    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
-    git svn fetch newbranchname [-r<rev>]
-    git checkout -b local-newbranchname -t newbranchname
-    git svn rebase newbranchname
-    ...
-    git svn dcommit --dry-run
-    git svn dcommit
 
 ## Resolve conflicts
 
@@ -638,6 +503,149 @@ column -t -s $'\t'
 * branch switcher: type [w]
 * quick search: type [s]
 * highlight specific line(s): Append #Ln or #Ln1-n2 eg: #L5 or #L10-18
+
+## Working with Subversion
+
+A couple of tips, in case you need to work with Subversion.
+
+### Migrating from Subversion
+
+http://git-scm.com/course/svn.html
+
+Print the content of a file at some revision or branch:
+
+    svn cat path/to/file -r REV
+    git show REV:path/to/file
+
+Print the diff of a revision:
+
+    svn diff -cREV
+    git show REV
+
+Export a project subdirectory:
+
+    svn export PATH /path/to/dir
+    git archive master > /path/to/export.tar
+
+Remove file from version control but keep it in the working directory:
+
+    svn rm --keep-local PATH
+    git rm --cached PATH
+
+### Working with a Subversion repository in lock-step with upstream
+
+Scenario: simple lock-step model, the rough equivalent of using svn checkout + svn update + svn commit.
+
+    # this will create new local git repo in new dir "projname"
+    git svn clone svn://path/to/repo/projname
+    # note: this can take a long time
+    # note: this can hang in the middle. When that happens,
+    # cd into the partial clone, and run `git svn fetch`.
+    # That too may hang, just keep repeating `git svn fetch` until success.
+ 
+    # commit changes to local repo
+    git commit -m "some work"
+    git commit -m "some more work"
+    git commit -m "even more work"
+ 
+    # get changes from svn, and rebase local work on top of it
+    git svn rebase
+ 
+    # push local changes back to svn, as multiple individual commits
+    git svn dcommit
+
+### Working with a Subversion repository and local Git branches
+
+Scenario: same as earlier, but this time use local Git branches
+
+    # create local 'work' branch and switch to it
+    git checkout -b work
+ 
+    # work work work...
+    git commit -m "some work"
+    git commit -m "some more work"
+    git commit -m "even more work"
+
+    # switch back to master and get upstream changes from svn
+    git checkout master
+    git svn rebase
+ 
+    # switch to work, rebase on top of master
+    git checkout work
+    git rebase master
+
+    # switch back to master, merge from work, and push back to svn
+    git checkout master
+    git merge work
+    git svn dcommit
+
+### Working on a Subversion branch
+
+    # add the url of the branch, and give it a "refname"
+    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
+    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
+
+    # fetch the branch
+    git svn fetch newbranchname [-r<rev>]
+
+    # create a local branch from the remote reference
+    git checkout -b local-newbranchname -t newbranchname
+
+    # update the local branch from the remote reference
+    git svn rebase newbranchname
+
+    # push the new revisions to subversion
+    git svn dcommit --dry-run
+    git svn dcommit
+
+### How to push a git repo to svn for the first time
+
+Create the target location inside the Subversion repository:
+
+    svn mkdir https://reposerver/path/to/repo/path/to/project
+
+Edit your git repository configuration to make the connection with git-svn:
+
+    [svn-remote "svn"]
+      url = https://reposerver/path/to/repo/path/to/project
+      fetch = :refs/remotes/git-svn
+
+Import the empty Subversion history:
+
+    git svn fetch
+
+Replay your commits on top of the empty Subversion history:
+
+    git rebase remotes/git-svn
+
+Push the commits to Subversion:
+
+    git svn dcommit
+
+### Switch to Subversion branch and do some work there
+
+    git config --add svn-remote.newbranchname.url https://svn/path_to_newbranch/
+    git config --add svn-remote.newbranchname.fetch :refs/remotes/newbranchname
+    git svn fetch newbranchname [-r<rev>]
+    git checkout -b local-newbranchname -t newbranchname
+    git svn rebase newbranchname
+    ...
+    git svn dcommit --dry-run
+    git svn dcommit
+
+### Misc
+
+Track specific branches of a subversion repository:
+
+    [svn-remote "huge-project"]
+            url = http://server.org/svn
+            fetch = trunk/src:refs/remotes/trunk
+            branches = branches/{red,green}/src:refs/remotes/branches/*
+            tags = tags/{1.0,2.0}/src:refs/remotes/tags/*
+
+Generate <tt>.gitignore</tt> in a checkout from subversion:
+
+    git-svn show-ignore > .gitignore
 
 ## Links
 
