@@ -177,7 +177,7 @@ If you know the path you want to restore, find the SHA where it was deleted:
 
 Bring back the deleted directory from the revision before the one which deleted it:
 
-   git checkout SHA^ -- path/to/deleted/dir
+    git checkout SHA^ -- path/to/deleted/dir
 
 The above command will create the specified path in the working tree
 and add it to the staging area. If you want to unstage:
