@@ -364,23 +364,19 @@ https://speakerdeck.com/u/holman/p/git-and-github-secrets
     # copy file without switching branches
     git checkout branchname -- path/to/file
 
-* click a line on github : adds #L123 to the url
-* works with ranges too
+    # click a line on github : adds #L123 to the url
+    # works with ranges too
 
+    # cherry pick the revisions that are in branch1 but not in master, by specific author, after specific revision
     git rev-list --reverse branch1 ^master --author codername sha1.. | git cherry-pick -n --stdin
 
-* cherry pick the revisions that are in branch1 but not in master, by specific author, after specific revision
-
-* change the url of a remote
-
+    # change the url of a remote
     git remote set-url origin git://new.url.here
 
-* set user email address
-
+    # set user email address
     git config --global user.email 'janos@xw8400'
 
-* alias remove unused branches
-
+    # alias to remove unused branches
     delete-unused-branches = "!f() { git branch | xargs git branch -d; }; f"
 
 ### misc
