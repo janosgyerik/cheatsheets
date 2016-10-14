@@ -110,6 +110,7 @@ Mac OS X
     ?control q          quick documentation
     cmd fn left         jump to top
     cmd fn right        jump to bottom
+    cmd shift F7        Edit | Find | Highlight Usages in File
 
 Macros
 ------
