@@ -111,6 +111,7 @@ Mac OS X
     cmd fn left         jump to top
     cmd fn right        jump to bottom
     cmd shift F7        Edit | Find | Highlight Usages in File
+    control shift q     View | Context Info: see the declaration of the current method without the need to scroll to it
 
 Macros
 ------
