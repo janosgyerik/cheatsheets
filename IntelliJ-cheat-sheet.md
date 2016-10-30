@@ -3,7 +3,6 @@ IntelliJ cheat sheet
 
 My cheat sheet of IntelliJ (and PyCharm) shortcuts.
 
-
 Initial setup
 -------------
 
@@ -21,7 +20,6 @@ Initial setup
 
 - Show line numbers:
   - Filter by: *"line num"*, and then: **Editor / Appearance / Show line numbers**
-
 
 Windows
 -------
@@ -56,30 +54,36 @@ Windows
 Linux
 -----
 
-    alt enter           intention actions
-    control shift a     find action by name
-    control alt s       open settings
-    control shift t     open class
-    control shift r     open file / resource
-    ?control h          open type hierarchy : control Enter to open selected
-    F2                  jump to next error
-    F3                  jump to declaration
-    control tab         switch between open files (keep control down!)
-    alt /               complete word
-    esc esc             switch to editor
-    alt 1               switch to / toggle project tool window
-    alt insert          new file / package / constructor / ...
-    alt up              move line up
-    control F4          close window
-    shift delete        cut current line
+    alt enter               intention actions
+    control shift a         find action by name
+    control alt s           open settings
+    control shift t         open class
+    control shift r         open file / resource
+    control h               open type hierarchy : control Enter to open selected
+    F2                      jump to next error
+    F3                      jump to declaration
+    control tab             switch between open files (keep control down!)
+    alt /                   complete word
+    esc esc                 switch to editor
+    alt 1                   switch to / toggle project tool window
+    alt insert              new file / package / constructor / ...
+    alt up                  move line up
+    control F4              close window
+    shift delete            cut current line
     ?control x		    	cut current line
     ?control y    			delete current line
-    ?control l          jump to line
-    control pageup      jump to top
-    ?control q          quick documentation
-    control home        jump to top
-    control end         jump to bottom
-
+    ?control l              jump to line
+    control pageup          jump to top
+    ?control q              quick documentation
+    control home            jump to top
+    control end             jump to bottom
+    control alt shift n     open any symbol or field
+    alt shift c             quickly review recent changes
+    control alt t           surround code with... (if, for, ...)
+    F12                     move focus to the last focused tool window
+    shift escape            close current tool window and switch to editor window
+    control `               quickly switch color theme (and others)
+    control shift i         View | Quick Definition; quickly review definition or content of the symbol at caret, without the need to open it in a new editor tab
 
 Mac OS X
 --------
@@ -123,3 +127,8 @@ and press the trigger key (see shortcuts above).
 
     sout        insert System.out.println()
     iter        insert for-each iterator to iterate over an iterable in the current scope
+
+Live templates
+--------------
+
+http://stackoverflow.com/documentation/intellij-idea/2703/live-templates
