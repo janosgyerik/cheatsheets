@@ -84,6 +84,8 @@ Linux
     shift escape            close current tool window and switch to editor window
     control `               quickly switch color theme (and others)
     control shift i         View | Quick Definition; quickly review definition or content of the symbol at caret, without the need to open it in a new editor tab
+    alt home                jump to navigation bar; use the arrow keys to locate the necessary files or folders
+    control shift F7        on implements keyword shows the list of overridden methods
 
 Mac OS X
 --------
@@ -115,8 +117,16 @@ Mac OS X
     cmd fn left         jump to top
     cmd fn right        jump to bottom
     cmd shift F7        Edit | Find | Highlight Usages in File
+    option F7           Find Usages
+    command F7          Find Usages in File
     control shift q     View | Context Info: see the declaration of the current method without the need to scroll to it
     control up          move quickly between methods in the editor
+
+Misc
+----
+
+- Click on `implements` keyword to highlight overridden methods
+- Click on a `return` or `throw` keyword to highlight all exit points from a method
 
 Macros
 ------
