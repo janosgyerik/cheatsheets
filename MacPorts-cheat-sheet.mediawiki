@@ -1,6 +1,12 @@
 == Searching, listing, querying ==
 
 <pre>
+# search ports by partial matches of the name or description
+port search python
+
+# prints information about a given port
+port info python27
+
 # list installed ports
 port installed
 
