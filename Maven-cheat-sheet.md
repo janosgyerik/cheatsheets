@@ -58,3 +58,6 @@ Print tree of dependencies:
 
     mvn dependency:tree
 
+Override local repository location (use a clean new local repo):
+
+    mvn package -Dmaven.repo.local=/tmp/repo
