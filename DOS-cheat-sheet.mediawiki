@@ -47,6 +47,12 @@ Similar (not necessarily equivalent!) programs in DOS and UNIX.
 |-
 | taskkill /pid 8168 /f
 | kill -9 8168
+|-
+| ... | find /c /v ""
+| ... | wc -l
+|-
+| ... | find /c "java"
+| ... | grep java | wc -l
 |}
 
 If you want to use UNIX commands in DOS, get coreutils!
