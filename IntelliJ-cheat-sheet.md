@@ -43,13 +43,14 @@ Windows
     control x           cut current line
     control y           delete current line
     control g           jump to line
-    run unit test       control shift F10
-    run last            shift F10
+    control shift F10   run unit test for current scope; creates run configuration if doesn't exist
+    shift F10           run last configuration
     control pageup      jump to top
     alt j               macro trigger key (see Macros section below)
     control q           quick documentation
     control home        jump to top
     control end         jump to bottom
+    shift shift         search everywhere (might nothing happen at first, may need to build some index, give it a few seconds)
 
 Linux
 -----
