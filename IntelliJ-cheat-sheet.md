@@ -122,6 +122,7 @@ Mac OS X
     command F7          Find Usages in File
     control shift q     View | Context Info: see the declaration of the current method without the need to scroll to it
     control up          move quickly between methods in the editor
+    cmd option shift t  refactoring options
 
 Misc
 ----
